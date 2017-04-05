@@ -12,11 +12,11 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="menu">
-                    <button id="New">New</button>
-                    <button id="Edit">Edit</button>
-                    <button id="Search">Search</button>
-                    <button id="History">History</button>
-                    <button id="Settings">Settings</button>
+                    <button id="New" onclick="location.href='new-supply.php';">New</button>
+                    <button id="Edit" onclick="location.href='edit.php';">Edit</button>
+                    <button id="Search" onclick="location.href='search.php';">Search</button>
+                    <button id="History" onclick="location.href='history.php';">History</button>
+                    <button id="Settings" onclick="location.href='settings.php';">Settings</button>
                 </div>
             </div>
             <div class="col-md-6">
