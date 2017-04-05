@@ -5,6 +5,7 @@
 		<meta charset = "UTF-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/new-qc.css">
         <div class="date"></div>
     </header>
     <body>
@@ -33,20 +34,24 @@
                         <table>
                             <tr>
                                 <td>ID</td>
-                                <td>: <input type="text" name="ID"></td>
+                                <td>: </td>
+                                <td><input type="text" name="ID"></td>
                             </tr>
                             <tr>
                                 <td>Hasil</td>
-                                <td>: <input type="radio" name="hasil" value="male" checked> Lulus
+                                <td>: </td>
+                                <td><input type="radio" name="hasil" value="male" checked> Lulus
   <input type="radio" name="hasil" value="female"> Tidak lulus</td>
                             </tr>
                             <tr>
                                 <td>File</td>
-                                <td>: <input type="file" name="namaFile"></td>
+                                <td>: </td>
+                                <td><input type="file" name="namaFile"></td>
                             </tr>
                             <tr>
-                                <td>Keterangan</td>
-                                <td>: <textarea class="form-control" rows="5"></textarea></td>
+                                <td valign="top">Keterangan</td>
+                                <td valign="top">: </td>
+                                <td><textarea class="form-control" rows="5"></textarea></td>
                             </tr>
                         </table>
                     </div>
