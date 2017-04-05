@@ -1,7 +1,35 @@
-.date {
-	float: right;
+.side-bar{
+	background-color: rgba(0, 0, 0, .15);
+	height: 100%;
 }
 
+.right-bar{
+	padding: 0 24px;
+}
+
+.date {
+	margin-top: 8px;
+	width: 100%;
+	text-align: right;
+}
+
+.logo{
+	margin: 36px 0;
+}
+
+.last-activity table{
+	width: 100%;
+}
+
+.last-activity .title{
+	font-weight: bold;
+}
+
+.last-activity table tr td{
+	padding: 4px 0;
+}
+
+/*
 .menu button{
 	display: block;
-}
+}*/
