@@ -25,11 +25,11 @@ table tr td {
 	padding-bottom: 25px;
 }
 
-form button {
+form .btn-default{
 	float: right;
 }
 
-button {
+.btn-default {
 	height: 75px;
 	width: 200px;
 }
