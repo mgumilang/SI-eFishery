@@ -12,9 +12,9 @@
         <div class="container-fluid">
         	<form>
                 <div class="form-head">
-                    <span class="oleh">
+                    <span class="id-barang">
                         ID Barang:
-                        <input type="text" name="oleh">
+                        <input type="text" name="id-barang">
                         <button type="button" class="btn btn-info">
 							Search...
 						</button>
