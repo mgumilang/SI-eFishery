@@ -1,0 +1,35 @@
+.date {
+	margin: 0px 15px 0 0;
+	float: right;
+}
+
+body {
+	margin: 10px 50px 10px 50px;
+}
+
+.form-head {
+	margin-top: 50px;
+}
+
+.form-head span {
+	padding: 20px;
+	font-size: 20px;
+}
+
+.panel {
+	margin-top: 15px;
+	height: 400px;
+}
+
+table tr td {
+	padding-bottom: 25px;
+}
+
+form button {
+	float: right;
+}
+
+button {
+	height: 75px;
+	width: 200px;
+}

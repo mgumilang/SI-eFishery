@@ -6,6 +6,11 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/index.css">
+        <style type="text/css">
+            body{
+                background-color: rgba(0, 0, 0, .05);
+            }
+        </style>
     </header>
     <body>
         <div class="container-fluid">
@@ -25,10 +30,10 @@
                         <button id="Edit" class="btn btn-default custom-100" onclick="location.href='edit.php';">
                             Edit
                         </button>
-                        <button id="Search" class="btn btn-default custom-100" onclick="location.href='search.php';">
+                        <button id="Search" class="btn btn-default custom-100" onclick="location.href='search2.php';">
                             Search
                         </button>
-                        <button id="History" class="btn btn-default custom-100" onclick="location.href='history.php';">
+                        <button id="History" class="btn btn-default custom-100" onclick="location.href='history2.php';">
                             History
                         </button>
                         <button id="Settings" class="btn btn-default custom-100" onclick="location.href='settings.php';">

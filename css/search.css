@@ -1,0 +1,34 @@
+.date {
+	margin: 0px 15px 0 0;
+	float: right;
+}
+
+body {
+	margin: 10px 50px 10px 50px;
+}
+
+.form-head {
+	margin-top: 50px;
+}
+
+.form-head span {
+	font-size: 20px;
+}
+
+.panel {
+	margin-top: 15px;
+	height: 400px;
+}
+
+table tr td {
+	padding-bottom: 25px;
+}
+
+form .btn-default{
+	float: right;
+}
+
+.btn-default {
+	height: 75px;
+	width: 200px;
+}

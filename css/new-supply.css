@@ -1,0 +1,30 @@
+.date {
+	margin: 0px 15px 0 0;
+	float: right;
+}
+
+body {
+	margin: 10px 50px 10px 50px;
+}
+
+.new-supply{
+	padding: 0;
+	margin: 0;
+}
+
+table tr {
+	margin: 10px;
+}
+
+table tr td {
+	padding-bottom: 5px;
+}
+
+form button {
+	float: right;
+}
+
+button {
+	height: 75px;
+	width: 200px;
+}

@@ -1,0 +1,30 @@
+.date {
+	margin: -30px 15px 0 0;
+	float: right;
+}
+
+body {
+	margin: 50px 50px 10px 50px;
+}
+
+.container-fluid {
+	font-size: 50px;
+}
+
+.edit-button button {
+	display: block;
+	margin-top: 20px; 
+}
+
+.nav-button {
+	margin-top: 200px;
+}
+
+.nav-button .save {
+	float: right;
+}
+
+.btn-default {
+	height: 75px;
+	width: 200px;
+}
