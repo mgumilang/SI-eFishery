@@ -144,10 +144,8 @@
                         <div class="row main-button">
                             <div class="col-md-6 left">
                                 <button class="btn btn-default" id="back-button">Back</button>
-                                <button class="btn btn-danger">Cancel</button>
                             </div>
                             <div class="col-md-6 right">
-                                <button type="submit" class="btn btn-primary">Edit</button>
                             </div>
                         </div>
                     </form>     

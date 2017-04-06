@@ -1,9 +1,9 @@
 <DOCTYPE! html>
 <html>
     <head>
-    	<title>Inventory Manufaktur eFishery | New</title>
-		<meta charset = "UTF-8">
-		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+        <title>Inventory Manufaktur eFishery | New</title>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/new-supply.css">
         <style type="text/css">
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2>
-                        New Supply
+                        New Quality Control (QC)
                     </h2>
                 </div>
             </div>
@@ -32,15 +32,15 @@
                                 <div class="form-group">
                                     <label for="tipe">Tipe:</label>
                                     <select class="form-control" name="data-masukan" id="tipe">
-                                        <option value="supply" selected>Supply</option>
+                                        <option value="supply">Supply</option>
                                         <option value="pengambilan">Pengambilan</option>
-                                        <option value="qc">QC</option>
+                                        <option value="qc" selected>QC</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="jumlah">Jumlah:</label>
+                                    <label for="jumlah">Oleh:</label>
                                     <input type="text" class="form-control" id="jumlah">
                                 </div>
                             </div>
@@ -55,6 +55,7 @@
                                 vertical-align: top;
                                 border-radius: 4px;
                                 background-color: white;
+                                overflow-x: hidden;
                             }
                             .main-data .col-md-12{
                                 vertical-align: top;
@@ -91,50 +92,37 @@
                                         text-align: center;
                                         margin-top: 80px;
                                     }
+
+                                    .keterangan{
+                                        padding: 0;
+                                        margin: 0;
+                                    }
                                 </style>
-                                <div class="card">
-                                    <div class="form-group">
-                                        <label>ID:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Nama Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Jenis Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="form-group">
-                                        <label>ID:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Nama Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Jenis Barang:</label>
-                                        <input type="text" class="form-control">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>ID:</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Hasil:</label>
+                                            <div>
+                                                <label class="radio-inline"><input type="radio" name="optradio">Lulus</label>
+                                                <label class="radio-inline"><input type="radio" name="optradio">Tidak Lulus</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>File:</label>
+                                            <input type="file" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="add card" id="card_add">
-                                    <div class="plus">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>ID:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Nama Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Jenis Barang:</label>
-                                        <input type="text" class="form-control">
+                                <div class="row keterangan">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="keterangan">Keterangan:</label>
+                                            <textarea class="form-control" rows="5" id="keterangan"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

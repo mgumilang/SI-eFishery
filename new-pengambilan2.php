@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2>
-                        New Supply
+                        New Pengambilan
                     </h2>
                 </div>
             </div>
@@ -28,20 +28,26 @@
                 <div class="col-md-12">
                     <form>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="tipe">Tipe:</label>
                                     <select class="form-control" name="data-masukan" id="tipe">
-                                        <option value="supply" selected>Supply</option>
-                                        <option value="pengambilan">Pengambilan</option>
+                                        <option value="supply">Supply</option>
+                                        <option value="pengambilan" selected>Pengambilan</option>
                                         <option value="qc">QC</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="jumlah">Jumlah:</label>
                                     <input type="text" class="form-control" id="jumlah">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="oleh">Oleh:</label>
+                                    <input type="text" class="form-control" id="oleh">
                                 </div>
                             </div>
                         </div>

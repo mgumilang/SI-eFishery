@@ -62,16 +62,15 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="tanggal">Tanggal:</label>
-                                    <input type="date" class="form-control" id="tanggal">
+                                    <input type="text" class="form-control" id="tanggal">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="status">Status:</label>
                                     <select class="form-control" name="data-masukan" id="status">
-                                        <option value="1">A</option>
-                                        <option value="2">B</option>
-                                        <option value="3">C</option>
+                                        <option value="1">Ada</option>
+                                        <option value="2">Tidak Ada</option>
                                     </select>
                                 </div>
                             </div>
@@ -181,10 +180,8 @@
                         <div class="row main-button">
                             <div class="col-md-6 left">
                                 <button class="btn btn-default" id="back-button">Back</button>
-                                <button class="btn btn-danger">Cancel</button>
                             </div>
                             <div class="col-md-6 right">
-                                <button type="submit" class="btn btn-primary">Edit</button>
                             </div>
                         </div>
                     </form>     

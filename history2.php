@@ -39,7 +39,7 @@
                                 <div class="form-group search-barang">
                                     <label for="id-barang">Search By:</label>
                                     <div class='input-group'>
-                                        <input type="date" class="form-control" id="id-barang">
+                                        <input type="text" class="form-control" id="id-barang">
                                         <span class="input-group-addon">
                                             Find
                                         </span>
@@ -165,10 +165,8 @@
                         <div class="row main-button">
                             <div class="col-md-6 left">
                                 <button class="btn btn-default" id="back-button">Back</button>
-                                <button class="btn btn-danger">Cancel</button>
                             </div>
                             <div class="col-md-6 right">
-                                <button type="submit" class="btn btn-primary">Edit</button>
                             </div>
                         </div>
                     </form>     
