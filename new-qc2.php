@@ -50,7 +50,6 @@
                                 margin: 0px;
                                 padding: 8px;
                                 border: solid 1px rgba(0, 0, 0, .2);
-                                min-height: 80%;
                                 overflow-y: auto;
                                 vertical-align: top;
                                 border-radius: 4px;

@@ -55,7 +55,6 @@
                                 padding: 16px;
                                 padding-top: 24px;
                                 border: solid 1px rgba(0, 0, 0, .2);
-                                min-height: 80%;
                                 overflow-y: auto;
                                 vertical-align: top;
                                 border-radius: 4px;
@@ -144,8 +143,10 @@
                         <div class="row main-button">
                             <div class="col-md-6 left">
                                 <button class="btn btn-default" id="back-button">Back</button>
+                                <button class="btn btn-danger">Cancel</button>
                             </div>
                             <div class="col-md-6 right">
+                                <button type="submit" class="btn btn-primary">Edit</button>
                             </div>
                         </div>
                     </form>     

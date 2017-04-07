@@ -30,10 +30,10 @@
                         <button id="Edit" class="btn btn-default custom-100" onclick="location.href='edit.php';">
                             Edit
                         </button>
-                        <button id="Search" class="btn btn-default custom-100" onclick="location.href='search2.php';">
+                        <button id="Search" class="btn btn-default custom-100" onclick="location.href='search.php';">
                             Search
                         </button>
-                        <button id="History" class="btn btn-default custom-100" onclick="location.href='history2.php';">
+                        <button id="History" class="btn btn-default custom-100" onclick="location.href='history.php';">
                             History
                         </button>
                         <button id="Settings" class="btn btn-default custom-100" onclick="location.href='settings.php';">

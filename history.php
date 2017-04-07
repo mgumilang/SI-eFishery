@@ -1,65 +1,186 @@
 <DOCTYPE! html>
 <html>
     <header>
-        <title>Inventory Manufaktur eFishery | History</title>
+        <title>Inventory Manufaktur eFishery | Edit</title>
 		<meta charset = "UTF-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/history.css">
+        <link rel="stylesheet" href="css/edit.css">
         <div class="date"></div>
+        <style type="text/css">
+            body{
+                background-color: rgba(0, 0, 0, .03);
+            }
+        </style>
     </header>
     <body>
-        <div class="container-fluid">
-        	<form>
-                <div class="form-head">
-                    <span class="oleh">
-                        Search by:
-                        <select name="jenis-masukan">
-                            <option value="tanggal">Tanggal</option>
-                            <option value="bulan">Bulan</option>
-                            <option value="tahun">Tahun</option>
-                        </select>
-                        <span class="tanggal">
-                            <input type="number" name="tanggal" min="1" max="31" step="1" value="1">
-                        </span>
-                        <span class="bulan">
-                            <select name="bulan">
-                                <option value="Januari">Januari</option>
-                                <option value="Februari">Februari</option>
-                                <option value="Maret">Maret</option>
-                                <option value="April">April</option>
-                                <option value="Mei">Mei</option>
-                                <option value="Juni">Juni</option>
-                                <option value="Juli">Juli</option>
-                                <option value="Agustus">Agustus</option>
-                                <option value="September">September</option>
-                                <option value="Oktober">Oktober</option>
-                                <option value="November">November</option>
-                                <option value="Desember">Desember</option>
-                            </select>
-                        </span>
-                        <span class="tahun">
-                            <input type="number" name="tanggal" min="2010" max="2017" step="1" value="2010">
-                        </span>
-                        <button type="button" class="btn btn-info">
-							Search...
-						</button>
-                    </span>
+        <div class="container-fluid edit">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>
+                        History
+                    </h2>
                 </div>
-            </form>     
-            <div class="form-body panel panel-default panel-light panel-summary">
-                <div class="panel-body nopadding">
-                    <div class="input-field">
-                        <table>
-                            
-                        </table>
-                    </div>
+            </div><div class="row">
+                <div class="col-md-12">
+                    <form>
+                        <div class="row">
+                            <style type="text/css">
+                                .search-barang{
+                                    
+                                }
+                                .search-barang div.input-group span:hover{
+                                    background-color: rgba(0, 0, 0, .1);
+                                    transition: .2s;
+                                    cursor: pointer;
+                                }
+                            </style>
+                            <div class="col-md-6">
+                                <div class="form-group search-barang">
+                                    <label for="id-barang">Search By:</label>
+                                    <div class='input-group'>
+                                        <input type="text" class="form-control" id="id-barang">
+                                        <span class="input-group-addon">
+                                            Find
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                        <style type="text/css">
+                            .main-data{
+                                margin: 0px;
+                                padding: 16px;
+                                padding-top: 24px;
+                                border: solid 1px rgba(0, 0, 0, .2);
+                                overflow-y: auto;
+                                vertical-align: top;
+                                border-radius: 4px;
+                                background-color: white;
+                            }
+                            .main-data .col-md-12{
+                                vertical-align: top;
+                                padding: 0px;
+                            }
+                            .komentar{
+                                padding: 0;
+                                margin: 0;
+                            }
+                        </style>
+                        <div class="row main-data">
+                            <div class="col-md-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Tanggal</th>
+                                            <th>Kegiatan</th>
+                                            <th>Pegawai</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>21 Maret 2017</td>
+                                            <td>Pengambilan</td>
+                                            <td>M. Gumilang</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>21 Maret 2017</td>
+                                            <td>Pengambilan</td>
+                                            <td>Joshua Atmadja</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>21 Maret 2017</td>
+                                            <td>QC</td>
+                                            <td>M. Gumilang</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>21 Maret 2017</td>
+                                            <td>Pengambilan</td>
+                                            <td>M. Gumilang</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>21 Maret 2017</td>
+                                            <td>Pengambilan</td>
+                                            <td>Joshua Atmadja</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>21 Maret 2017</td>
+                                            <td>QC</td>
+                                            <td>M. Gumilang</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>21 Maret 2017</td>
+                                            <td>Pengambilan</td>
+                                            <td>M. Gumilang</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>21 Maret 2017</td>
+                                            <td>Pengambilan</td>
+                                            <td>Joshua Atmadja</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>21 Maret 2017</td>
+                                            <td>QC</td>
+                                            <td>M. Gumilang</td>
+                                        </tr>
+                                    </tbody>
+                                </table>    
+                            </div>
+                        </div>
+
+                        <style type="text/css">
+                            .main-button{
+                                margin: 4px 0px;
+                            }
+                            .main-button .left, .main-button .right{
+                                margin: 0px;
+                                padding: 0;
+                                text-align: left;
+                            }
+                            .main-button .left button{
+                                float: left;
+                                margin-right: 4px;
+                            }
+                            .main-button .right button{
+                                float: right;
+                            }
+
+                            button {
+                                height: 75px;
+                                width: 200px;
+                            }
+                        </style>
+                        <div class="row main-button">
+                            <div class="col-md-6 left">
+                                <button class="btn btn-default" id="back-button">Back</button>
+                            </div>
+                            <div class="col-md-6 right">
+                            </div>
+                        </div>
+                    </form>     
                 </div>
             </div>
-            <button class="btn btn-default">Back</button>
         </div>
     </body>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#back-button').click(function(e){
+            e.preventDefault();
+            window.location.href = "index.php";
+        })
+    </script>
     <script src="js/date.js"></script>
 </html>

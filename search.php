@@ -200,11 +200,11 @@
         $('#tipe').change(function(){
             position = $(this).val();
             if(position == 'barang')
-                window.location.href = 'search2.php';
+                window.location.href = 'search.php';
             else if(position == 'pengambilan')
-                window.location.href = 'search-pengambilan2.php';
+                window.location.href = 'search-pengambilan.php';
             else if(position == 'qc')
-                window.location.href = 'search-qc2.php';
+                window.location.href = 'search-qc.php';
         });
     </script>
     <script src="js/date.js"></script>

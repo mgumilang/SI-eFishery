@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2>
-                        Search Barang
+                        Search Quality Control (QC)
                     </h2>
                 </div>
             </div><div class="row">
@@ -39,9 +39,9 @@
                                 <div class="form-group search-barang">
                                     <label for="tipe">Search Data:</label>
                                     <select class="form-control" name="data-masukan" id="tipe">
-                                        <option value="barang" selected>Barang</option>
+                                        <option value="barang">Barang</option>
                                         <option value="pengambilan">Pengambilan</option>
-                                        <option value="qc">QC</option>
+                                        <option value="qc" selected>QC</option>
                                     </select>
                                 </div>
                             </div>
@@ -52,32 +52,26 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="nama-barang">Nama:</label>
-                                    <input type="text" class="form-control" id="nama-barang">
+                                <div class="form-group search-barang">
+                                    <label for="tipe">Hasil:</label>
+                                    <select class="form-control" name="data-masukan" id="tipe">
+                                        <option value="1">Lulus</option>
+                                        <option value="2">Tidak Lulus</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="tanggal">Tanggal:</label>
                                     <input type="date" class="form-control" id="tanggal">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="status">Status:</label>
-                                    <select class="form-control" name="data-masukan" id="status">
-                                        <option value="1">Ada</option>
-                                        <option value="2">Tidak Ada</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="jenis">Jenis:</label>
-                                    <input type="text" class="form-control" id="jenis">
+                                    <label for="pemeriksa">Pemeriksa:</label>
+                                    <input type="text" class="form-control" id="pemeriksa">
                                 </div>
                             </div>
                         </div>
@@ -120,9 +114,10 @@
                                             <th>No</th>
                                             <th>Tanggal</th>
                                             <th>ID Barang</th>
-                                            <th>Nama Barang</th>
-                                            <th>Jenis Barang</th>
-                                            <th>Status</th>
+                                            <th>Hasil</th>
+                                            <th>Pemeriksa</th>
+                                            <th>File QC</th>
+                                            <th>Keterangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -130,25 +125,28 @@
                                             <td>1</td>
                                             <td>21 Maret 2017</td>
                                             <td>FR-17</td>
-                                            <td>Pengambilan</td>
-                                            <td>Makanan</td>
-                                            <td>TRUE</td>
+                                            <td>Lulus</td>
+                                            <td>John Smith</td>
+                                            <td><a href="#">pemeriksaan_1.jpg</a></td>
+                                            <td>Barang sedikit rusak</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td>20 Maret 2017</td>
-                                            <td>AC-22</td>
-                                            <td>Pengambilan</td>
-                                            <td>Buku</td>
-                                            <td>TRUE</td>
+                                            <td>21 Maret 2017</td>
+                                            <td>FR-17</td>
+                                            <td>Lulus</td>
+                                            <td>John Smith</td>
+                                            <td><a href="#">pemeriksaan_1.jpg</a></td>
+                                            <td>Barang sedikit rusak</td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td>19 Maret 2017</td>
-                                            <td>FR-02</td>
-                                            <td>Pemasukan</td>
-                                            <td>Makanan</td>
-                                            <td>FALSE</td>
+                                            <td>21 Maret 2017</td>
+                                            <td>FR-17</td>
+                                            <td>Lulus</td>
+                                            <td>John Smith</td>
+                                            <td><a href="#">pemeriksaan_1.jpg</a></td>
+                                            <td>Barang sedikit rusak</td>
                                         </tr>
                                     </tbody>
                                 </table>    

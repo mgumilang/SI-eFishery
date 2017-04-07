@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2>
-                        Search Barang
+                        Search Pengambilan
                     </h2>
                 </div>
             </div><div class="row">
@@ -35,49 +35,34 @@
                             }
                         </style>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group search-barang">
                                     <label for="tipe">Search Data:</label>
                                     <select class="form-control" name="data-masukan" id="tipe">
-                                        <option value="barang" selected>Barang</option>
-                                        <option value="pengambilan">Pengambilan</option>
+                                        <option value="barang">Barang</option>
+                                        <option value="pengambilan" selected>Pengambilan</option>
                                         <option value="qc">QC</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="id-barang">ID Barang:</label>
                                     <input type="text" class="form-control" id="id-barang">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="nama-barang">Nama:</label>
-                                    <input type="text" class="form-control" id="nama-barang">
-                                </div>
-                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="tanggal">Tanggal:</label>
                                     <input type="date" class="form-control" id="tanggal">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="status">Status:</label>
-                                    <select class="form-control" name="data-masukan" id="status">
-                                        <option value="1">Ada</option>
-                                        <option value="2">Tidak Ada</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="jenis">Jenis:</label>
-                                    <input type="text" class="form-control" id="jenis">
+                                    <label for="pegawai">Pegawai:</label>
+                                    <input type="text" class="form-control" id="pegawai">
                                 </div>
                             </div>
                         </div>
@@ -120,9 +105,7 @@
                                             <th>No</th>
                                             <th>Tanggal</th>
                                             <th>ID Barang</th>
-                                            <th>Nama Barang</th>
-                                            <th>Jenis Barang</th>
-                                            <th>Status</th>
+                                            <th>Nama Pegawai</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -130,25 +113,19 @@
                                             <td>1</td>
                                             <td>21 Maret 2017</td>
                                             <td>FR-17</td>
-                                            <td>Pengambilan</td>
-                                            <td>Makanan</td>
-                                            <td>TRUE</td>
+                                            <td>John Smith</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td>20 Maret 2017</td>
                                             <td>AC-22</td>
-                                            <td>Pengambilan</td>
-                                            <td>Buku</td>
-                                            <td>TRUE</td>
+                                            <td>John Smith</td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
                                             <td>19 Maret 2017</td>
                                             <td>FR-02</td>
-                                            <td>Pemasukan</td>
-                                            <td>Makanan</td>
-                                            <td>FALSE</td>
+                                            <td>John Smith</td>
                                         </tr>
                                     </tbody>
                                 </table>    
