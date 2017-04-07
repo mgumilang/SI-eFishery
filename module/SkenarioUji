@@ -1,0 +1,274 @@
+DatabaseHelper
+1	DoQuery
+
+PengolahBarang
+2	Insert
+3	Update
+4	Delete
+5	All
+6	Some
+7	One
+
+PengolahPegawai
+8	Insert
+9	Update
+10	Delete
+11	All
+12	Some
+13	One
+14	PeriksaBarang
+15	AmbilBarang
+
+TrackerBarang
+16	AllPemeriksaan
+17	SomePemeriksaan
+18	SomePemeriksaanByDateIdPegawai
+19	AllPengambilan
+20	SomePengambilan
+21	SomePengambilanByDateIdPegawai
+
+HistoryMaster
+22	All
+23	Some
+
+--
+SRS-ID: FR-00
+Konstruktor
+--
+SRS-ID: FR-01
+Deskripsi:
+Sistem dapat melakukan koneksi ke basis data.
+
+Data input:
+-
+
+Output yang diharapkan:
+Tidak terjadi error.
+
+Langkah pengujian:
+1. Buka aplikasi.
+2. Lakukan hal yang berkaitan dengan akses basis data, misal: membuka history.
+3. History muncul pada halaman.
+
+--
+SRS-ID: FR-10
+Konstruktor
+--
+SRS-ID: FR-11
+Deskripsi:
+User dapat menambahkan barang ke sistem.
+
+Data input:
+Nama, status, tanggal masuk, dan jenis barang.
+
+Output yang diharapkan:
+Barang berhasil ditambahkan.
+
+Langkah pengujian:
+1. Buka aplikasi.
+2. Klik "New"
+3. Klik "Tipe"
+4. Pilih Jenis Barang yang ingin ditambahkan
+5. Isi data barang
+6. Klik "Insert"
+7. Kembali ke halaman utama aplikasi
+8. Klik "Search"
+9. Cari barang dengan memasukkan identitas unik barang yang baru saja ditambahkan
+10. Barang ditampilkan.
+
+--
+SRS-ID: FR-12
+Deskripsi:
+User dapat mengubah barang yang sudah pernah ditambahakan ke sistem.
+
+Data input:
+ID Barang, Nama, status, tanggal masuk, atau jenis barang.
+
+Output yang diharapkan:
+Barang berhasil diubah.
+
+Langkah pengujian:
+1. Buka aplikasi.
+2. Klik "Edit"
+3. Masukkan ID Barang yang ingin diubah
+4. Klik "Search"
+5. Isi data perubahan barang
+6. Klik "Edit"
+7. Kembali ke halaman utama aplikasi
+8. Klik "Search"
+9. Cari barang dengan memasukkan identitas unik barang yang baru saja ditambahkan
+10. Barang ditampilkan.
+
+--
+SRS-ID: FR-13
+Delete (Opsional, kmrn bikinnya aku pikir mungkin saja diperlukan, ternyata di UI nya ga dibutuhkan)
+--
+SRS-ID: FR-14
+All (Opsional, kmrn bikinnya aku pikir mungkin saja diperlukan, ternyata di UI nya ga dibutuhkan)
+--
+SRS-ID: FR-15
+Deskripsi:
+User dapat melihat list barang (satu atau lebih) berdasarkan parameter tertentu.
+
+Data input:
+ID Barang, Nama, status, tanggal, atau jenis barang.
+
+Output yang diharapkan:
+Pencarian menghasilkan barang yang ada pada sistem.
+
+Langkah pengujian:
+1. Buka aplikasi.
+2. Klik "Search"
+3. Masukkan data unik barang yang dicari
+4. Klik "Search"
+5. Barang-barang yang dicari ditampilkan.
+
+--
+SRS-ID: FR-16
+Deskripsi:
+Sistem dapat menemukan satu barang pada basis data.
+
+Data input:
+ID Barang.
+
+Output yang diharapkan:
+Data-data barang ditemukan.
+
+Langkah pengujian:
+1. Buka aplikasi.
+2. Klik "Edit"
+3. Masukkan ID Barang yang ingin diubah
+4. Klik "Search"
+5. Akan muncul data barang pada field edit
+
+--
+SRS-ID: FR-20
+Konstruktor
+--
+CRUD Data Pegawai SRS-ID: FR-21, 22, 23, 24, 25, 26
+(Opsional, kmrn bikinnya aku pikir mungkin saja diperlukan, ternyata di UI nya ga dibutuhkan)
+--
+SRS-ID: FR-27
+Deskripsi:
+User memeriksa barang, data pemeriksaan dimasukkan ke dalam sistem.
+
+Data input:
+Data-data pemeriksaan barang.
+
+Output yang diharapkan:
+User dapat melakukan input data pemeriksaan ke dalam sistem.
+
+Langkah pengujian:
+1. Buka aplikasi.
+2. Klik "New"
+3. Klik "Tipe"
+4. Pilih "QC"
+5. Isi data pemeriksaan barang
+6. Klik "Insert"
+7. Kembali ke halaman utama aplikasi
+8. Klik "Search"
+9. Pada bagian search data pilih "QC"
+10. Isi data unik barang pada field pencarian.
+11. Klik "Search"
+12. Data ditampilkan.
+
+--
+SRS-ID: FR-28
+Deskripsi:
+User mengambil barang, data pengambilan dimasukkan ke dalam sistem.
+
+Data input:
+Data-data pengambilan barang.
+
+Output yang diharapkan:
+User dapat melakukan input data pengambilan ke dalam sistem.
+
+Langkah pengujian:
+1. Buka aplikasi.
+2. Klik "New"
+3. Klik "Tipe"
+4. Pilih "Pengambilan"
+5. Isi data pengambilan barang
+6. Klik "Insert"
+7. Kembali ke halaman utama aplikasi
+8. Klik "Search"
+9. Pada bagian search data pilih "Pengambilan"
+10. Isi data unik barang pada field pencarian.
+11. Klik "Search"
+12. Data ditampilkan.
+
+--
+SRS-ID: FR-30
+Konstruktor
+--
+SRS-ID: FR-31
+All (Opsional, kmrn bikinnya aku pikir mungkin saja diperlukan, ternyata di UI nya ga dibutuhkan)
+--
+SRS-ID: FR-32
+Deskripsi:
+User mencari data pemeriksaan barang.
+
+Data input:
+Data unik ID barang, nama, tanggal, status, atau jenis barang.
+
+Output yang diharapkan:
+Data yang dicari dan ada pada sistem ditampilkan.
+
+Langkah pengujian:
+1. Buka aplikasi.
+2. Klik "Search"
+3. Pada bagian search data pilih "QC"
+4. Isi data unik barang pada field pencarian.
+5. Klik "Search"
+6. Data ditampilkan.
+
+--
+SRS-ID: FR-33
+All (Opsional, kmrn bikinnya aku pikir mungkin saja diperlukan, ternyata di UI nya ga dibutuhkan)
+--
+SRS-ID: FR-34
+Deskripsi:
+User mencari data pengambilan barang.
+
+Data input:
+Data unik ID barang, nama, tanggal, status, atau jenis barang.
+
+Output yang diharapkan:
+Data yang dicari dan ada pada sistem ditampilkan.
+
+Langkah pengujian:
+1. Buka aplikasi.
+2. Klik "Search"
+3. Pada bagian search data pilih "Pengambilan"
+4. Isi data unik barang pada field pencarian.
+5. Klik "Search"
+6. Data ditampilkan.
+
+
+--
+SRS-ID: FR-35
+ByDate dan IdPegawai (Opsional, kmrn bikinnya aku pikir mungkin saja diperlukan, ternyata di UI nya ga dibutuhkan)
+--
+SRS-ID: FR-36
+ByDate dan IdPegawai (Opsional, kmrn bikinnya aku pikir mungkin saja diperlukan, ternyata di UI nya ga dibutuhkan)
+--
+SRS-ID: FR-40
+Konstruktor
+--
+SRS-ID: FR-14
+All (Opsional, kmrn bikinnya aku pikir mungkin saja diperlukan, ternyata di UI nya ga dibutuhkan)
+--
+SRS-ID: FR-42
+Deskripsi:
+Melihat history aktivitas pada sistem.
+
+Data input:
+-
+
+Output yang diharapkan:
+Data history aktivitas ditampilkan.
+
+Langkah pengujian:
+1. Buka aplikasi.
+2. Klik "History"
+3. Data ditampilkan.
