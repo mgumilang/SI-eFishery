@@ -39,7 +39,7 @@
                                 <div class="form-group search-barang">
                                     <label for="id-barang">Search By:</label>
                                     <div class='input-group'>
-                                        <input type="text" class="form-control" id="id-barang">
+                                        <input type="date" class="form-control" id="id-barang">
                                         <span class="input-group-addon">
                                             Find
                                         </span>
