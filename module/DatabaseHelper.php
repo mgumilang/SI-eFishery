@@ -56,6 +56,7 @@
 			if(!$hasil)
 				$errorDB = $conn->error;
 
+			$last_id = isset($conn->insert_id) ? $conn->insert_id : NULL;
 			// Close connection
 			$conn->close();
 
@@ -77,14 +78,16 @@
 				// return result to caller
 			    return (object)array(
 			    	'error' => false,
-			    	'data' => $arrResult
+			    	'data' => $arrResult,
+			    	'last_id' => $last_id
 			    );
 			}
 
 			// Else return error message
 		    return (object)array(
 		    	'error' => true,
-		    	'data' => $errorDB
+		    	'data' => $errorDB,
+		    	'last_id' => NULL
 		    );
 		}
 

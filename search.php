@@ -6,7 +6,7 @@
         $_GET['idbarang'] = "";
         $_GET['nama'] = "";
         $_GET['tanggal'] = "";
-        $_GET['status'] = "0";
+        $_GET['status'] = "";
         $_GET['jenis'] = "";
     }
 
@@ -23,7 +23,7 @@
 
     $hasil = $pb->allWithParams($_GET['idbarang'], $_GET['nama'], $_GET['tanggal'], $_GET['status'], $_GET['jenis']);
 
- ?>
+?>
 
 <DOCTYPE! html>
 <html>
@@ -96,8 +96,9 @@
                                 <div class="form-group">
                                     <label for="status">Status:</label>
                                     <select class="form-control" name="status" id="status">
-                                        <option value="0">Ada</option>
-                                        <option value="1">Tidak Ada</option>
+                                        <option value=""></option>
+                                        <option value="0" <?php echo $_GET['status'] == '0' ? "selected" : "" ?>>Ada</option>
+                                        <option value="1" <?php echo $_GET['status'] == '1' ? "selected" : "" ?>>Tidak Ada</option>
                                     </select>
                                 </div>
                             </div>

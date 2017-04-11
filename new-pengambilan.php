@@ -6,9 +6,21 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/new-supply.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">
             body{
                 background-color: rgba(0, 0, 0, .03);
+            }
+            .fa-trash{
+                float:right;
+                padding: 2px;
+                border: solid 1px rgba(0, 0, 0, .1);
+                margin-top: -8px;
+                padding: 4px;
+                cursor: pointer;
+            }
+            .fa-trash:hover{
+                color: red;
             }
         </style>
     </head>
@@ -26,7 +38,6 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <form>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -41,13 +52,40 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="jumlah">Jumlah:</label>
-                                    <input type="text" class="form-control" id="jumlah">
+                                    <input type="text" class="form-control" id="jumlah" value="0" disabled="disabled">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="oleh">Oleh:</label>
-                                    <input type="text" class="form-control" id="oleh">
+                                    <select class="form-control" name="oleh" id="oleh">
+
+                                    <?php
+                                        require('module/PengolahPegawai.php');
+
+                                        // Simple driver test
+                                        $dbHost = "localhost";
+                                        $dbName = "ef_manufacture";
+                                        $dbUser = "root";
+                                        $dbPass = "";
+
+                                        // create instance
+                                        $dbhelper = new DatabaseHelper($dbHost, $dbName, $dbUser, $dbPass);
+                                        $pp = new PengolahPegawai($dbhelper);
+
+
+                                        $res = $pp->all();
+
+                                        foreach ($res->data as $pegawai){
+                                            echo '<option value="' . $pegawai['ID'] . '">' . $pegawai['Nama'] . '</option>' . "\n";
+                                        }
+                                        
+                                        // dump result
+                                        
+                                        
+                                    ?>
+
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -97,34 +135,6 @@
                                         margin-top: 80px;
                                     }
                                 </style>
-                                <div class="card">
-                                    <div class="form-group">
-                                        <label>ID:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Nama Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Jenis Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="form-group">
-                                        <label>ID:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Nama Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Jenis Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
                                 <div class="add card" id="card_add">
                                     <div class="plus">
                                         <span class="glyphicon glyphicon-plus"></span>
@@ -164,45 +174,90 @@
                                 <button class="btn btn-danger">Reset</button>
                             </div>
                             <div class="col-md-6 right">
-                                <button type="submit" class="btn btn-primary">Insert</button>
+                                <form action="middleware/new-pengambilan.php" method="POST">
+                                    <input type="hidden" name="allid" id="allid" />
+                                    <input type="hidden" name="id_pegawai" id="id_pegawai" />
+                                    <button type="submit" class="btn btn-primary">Insert</button>
+                                </form>
                             </div>
                         </div>
-                    </form>     
                 </div>
             </div>
         <!-- </div> -->
     </body>
-    <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $('#back-button').click(function(e){
             e.preventDefault();
             window.location.href = "index.php";
         });
 
+        $('form').submit(function(e){
+            var dataid = $('.input-id');
+
+            var outid = "";
+
+            var len = parseInt($('#jumlah').val());
+            for(var i = 0; i < len; i++){
+                outid += $(dataid[i]).val() + (i ==  (len - 1) ? "" : ",");
+            }
+
+            $('#allid').val(outid);
+            $('#id_pegawai').val($('#oleh').val());
+
+            console.log($('#allid').val());
+            console.log($('#id_pegawai').val());
+
+            // e.preventDefault();
+            return true;
+        });
+
         var get_new_card = function(){
             return '\
             <div class="card">\
+                <i class="fa fa-trash"></i>\
                 <div class="form-group">\
                     <label>ID:</label>\
-                    <input type="text" class="form-control">\
+                    <input type="text" class="form-control input-id">\
                 </div>\
                 <div class="form-group">\
                     <label>Nama Barang:</label>\
-                    <input type="text" class="form-control">\
+                    <input type="text" class="form-control" disabled="disabled">\
                 </div>\
                 <div class="form-group">\
                     <label>Jenis Barang:</label>\
-                    <input type="text" class="form-control">\
+                    <input type="text" class="form-control" disabled="disabled">\
                 </div>\
             </div>';
-        }
+        };
+
+
+        $(document).on('keyup', '.input-id', function(){
+            var this_parent = this;
+            var setSibsData = function(a, b){
+                var sibs = $(this_parent).parent().siblings();
+                $(sibs[1]).children('input').val(a);
+                $(sibs[2]).children('input').val(b);
+            }
+            $.ajax({url: "middleware/find-supply.php?id_barang=" + $(this).val(), success: function(result){
+                // console.log(result.Nama);
+                if(result.length > 0){
+                    var json = JSON.parse(result);
+                    console.log(json);
+                    setSibsData(json.Nama, json.Jenis);
+                }else{
+                    setSibsData("", "");
+                }
+            }});
+        });
 
 
         $('#card_add').click(function(){
-            console.log(999);
+            $('#jumlah').val(parseInt($('#jumlah').val()) + 1);
             $(this).before(get_new_card());
         });
+
 
         $('#tipe').change(function(){
             position = $(this).val();
@@ -213,6 +268,11 @@
             else if(position == 'qc')
                 window.location.href = 'new-qc.php';
             
+        });
+
+        $(document).on('click', '.fa-trash', function(){ 
+            $(this).parent().remove();
+            $('#jumlah').val(parseInt($('#jumlah').val()) - 1);
         });
     </script>
     <script src="js/date.js"></script>

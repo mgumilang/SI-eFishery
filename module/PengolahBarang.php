@@ -22,12 +22,28 @@
 	    	$insert_status = $this->dbhelper->DoQuery("INSERT INTO Barang(Status, Nama, Tanggal_Masuk, E_Jenis_ID) VALUES ('0', '$nama', '$tanggal_masuk', '$jenis');");
 	    }
 
-	    public function update($id, $nama, $status, $tanggal_masuk, $jenis){
-
+	    public function update($id, $nama, $status, $tanggal_masuk, $jenis, $hasil, $keterangan){
+	    	return $this->dbhelper->DoQuery("UPDATE Barang SET Nama = '$nama', Status = '$status', Tanggal_Masuk = '$tanggal_masuk', E_Jenis_ID = '$jenis', R_diperiksa_Hasil = '$hasil', R_diperiksa_Keterangan = '$keterangan' WHERE ID = '$id';");
 	    }
 
 	    public function delete($id){
 
+	    }
+
+	    public function createAndGetIDPengambilan($idPegawai){
+	    	return $this->dbhelper->DoQuery("INSERT INTO Pengambilan(E_Pegawai_ID) VALUES('$idPegawai')");
+	    }
+
+	    public function setBarangKePengambilan($arrIDBarang, $IDPengambilan){
+	    	$arr = array();
+	    	foreach($arrIDBarang as $data)
+	    		array_push($arr, "ID = " . $data);
+
+	    	$queryCondition = implode(" OR ", $arr);
+
+	    	var_dump($queryCondition);
+
+	    	return $this->dbhelper->DoQuery("UPDATE Barang SET E_Pengambilan_ID = $IDPengambilan WHERE $queryCondition;");
 	    }
 
 	    public function all(){
@@ -52,7 +68,30 @@
 	    	if(strlen($jenis) > 0)
 	    		$params .= (strlen($params) > 0 ? " AND " : "") . "E_Jenis_ID = '$jenis'";
 
-	    	return $this->dbhelper->DoQuery("SELECT * FROM Barang WHERE $params;");
+			if(strlen($params) > 0)
+	    		return $this->dbhelper->DoQuery("SELECT * FROM Barang WHERE $params;");
+
+	    	return $this->dbhelper->DoQuery("SELECT * FROM Barang;");
+	    }
+
+	    public function allPengambilanWithParams($id, $tanggal, $id_pegawai){
+	    	$q = "SELECT Pengambilan.Tanggal AS Tanggal_Pengambilan, Barang.ID AS ID_Barang, Pegawai.Nama as Nama_Pegawai FROM Barang JOIN Pengambilan ON Barang.E_Pengambilan_ID = Pengambilan.ID JOIN Pegawai ON Pengambilan.E_Pegawai_ID = Pegawai.ID";
+
+	    	$params = "";
+	    	
+	    	if(strlen($id) > 0)
+	    		$params .= "Barang.ID = '$id'";
+	    	
+	    	if(strlen($tanggal) > 0)
+	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Pengambilan.Tanggal = '$tanggal'";
+	    	
+	    	if(strlen($id_pegawai) > 0)
+	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Pengambilan.E_Pegawai_ID = '$id_pegawai'";
+	    	
+			if(strlen($params) > 0)
+	    		return $this->dbhelper->DoQuery($q . " WHERE $params;");
+
+	    	return $this->dbhelper->DoQuery($q);
 	    }
 
 	    public function some($offset){
@@ -60,7 +99,7 @@
 	    }
 
 	    public function one_id($id){
-	    	
+	    	return $this->dbhelper->DoQuery("SELECT Barang.*, Jenis.Nama AS Jenis FROM Barang JOIN Jenis ON E_Jenis_ID = Jenis.ID WHERE Barang.ID = '$id';");
 	    }
 
 	    public function one_name($nama){

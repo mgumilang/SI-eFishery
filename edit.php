@@ -23,7 +23,7 @@
                 </div>
             </div><div class="row">
                 <div class="col-md-12">
-                    <form>
+                    <form action="middleware/edit.php" method="POST">
                         <div class="row">
                             <style type="text/css">
                                 .search-barang{
@@ -39,11 +39,14 @@
                                 <div class="form-group search-barang">
                                     <label for="id-barang">ID Barang:</label>
                                     <div class='input-group'>
-                                        <input type="text" class="form-control" id="id-barang">
-                                        <span class="input-group-addon">
+                                        <input type="text" class="form-control" name="id" value="<?php
+                                            echo isset($_GET['id']) ? $_GET['id'] : "";
+                                        ?>" id="id-barang">
+                                        <span class="input-group-addon" id="search-id">
                                             Search
                                         </span>
                                     </div>
+                                    <div id="search-result-hint"></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -75,34 +78,62 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nama Barang:</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="nama" id="nama-barang">
                                         </div>
                                         <div class="form-group">
                                             <label>Jenis Barang:</label>
-                                            <input type="text" class="form-control">
+                                            <select class="form-control" name="jenis" id="jenis-barang">
+                                                <option value="-1"></option>
+                                            <?php
+                                                require('module/PengolahBarang.php');
+
+                                                // Simple driver test
+                                                $dbHost = "localhost";
+                                                $dbName = "ef_manufacture";
+                                                $dbUser = "root";
+                                                $dbPass = "";
+
+                                                // create instance
+                                                $dbhelper = new DatabaseHelper($dbHost, $dbName, $dbUser, $dbPass);
+                                                $pb = new PengolahBarang($dbhelper);
+
+
+                                                $res = $pb->allJenisBarang();
+
+                                                foreach ($res->data as $pegawai){
+                                                    echo '<option value="' . $pegawai['ID'] . '">' . $pegawai['Nama'] . '</option>' . "\n";
+                                                }
+                                                
+                                                // dump result
+                                                
+                                                
+                                            ?>
+
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label>File:</label>
-                                            <input type="file" class="form-control">
+                                            <input type="file" class="form-control" name="file">
                                         </div>
                                         <div class="form-group">
                                             <label>Hasil:</label>
                                             <div>
-                                                <label class="radio-inline"><input type="radio" name="optradio">Lulus</label>
-                                                <label class="radio-inline"><input type="radio" name="optradio">Tidak Lulus</label>
+                                                <label class="radio-inline"><input type="radio" id="hasil-0" name="hasil" value="Lulus" id="">Lulus</label>
+                                                <label class="radio-inline"><input type="radio" id="hasil-1" name="hasil" value="Tidak Lulus">Tidak Lulus</label>
+                                                <label class="radio-inline"><input type="radio" id="hasil-2" name="hasil" value="">Belum Diperiksa</label>
                                             </div>
                                         </div>  
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tanggal Masuk:</label>
-                                            <input type="date" class="form-control">
+                                            <input type="date" class="form-control" id="tanggal-masuk-barang" name="tanggal_masuk">
                                         </div>
                                         <div class="form-group">
                                             <label>Status:</label>
                                             <div>
-                                                <label class="radio-inline"><input type="radio" name="optradio">Ada</label>
-                                                <label class="radio-inline"><input type="radio" name="optradio">Tidak Ada</label>
+                                                <label class="radio-inline"><input type="radio" id="status-0" value="0" name="status">Ada</label>
+                                                <label class="radio-inline"><input type="radio" id="status-1" value="1" name="status">Tidak Ada</label>
                                             </div>
                                         </div>
                                     </div>
@@ -111,7 +142,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="keterangan">Keterangan:</label>
-                                            <textarea class="form-control" rows="5" id="keterangan"></textarea>
+                                            <textarea class="form-control" rows="5" id="keterangan" name="keterangan"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +177,7 @@
                                 <button class="btn btn-danger">Cancel</button>
                             </div>
                             <div class="col-md-6 right">
-                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button type="submit" class="btn btn-primary" id="edit-button" disabled>Edit</button>
                             </div>
                         </div>
                     </form>     
@@ -161,6 +192,70 @@
             e.preventDefault();
             window.location.href = "index.php";
         })
+
+        var formUpdate = function(){
+            var setUpForm = function(data){
+                $('#nama-barang').val(data.Nama);
+                $('#jenis-barang').val(data.E_Jenis_ID);
+
+                if(data.R_diperiksa_Hasil == "Lulus")
+                    $('#hasil-0').prop("checked", true);
+                else if(data.R_diperiksa_Hasil == "Tidak Lulus")
+                    $('#hasil-1').prop("checked", true);
+                else if(data.R_diperiksa_Hasil == "")
+                    $('#hasil-2').prop("checked", true);
+                else{
+                    $('#hasil-0').prop("checked", false);
+                    $('#hasil-1').prop("checked", false);
+                    $('#hasil-2').prop("checked", false);
+                }
+
+                $('#tanggal-masuk-barang').val(data.Tanggal_Masuk);
+
+                if(data.Status == "0")
+                    $('#status-0').prop("checked", true);
+                else if(data.Status == "1")
+                    $('#status-1').prop("checked", true);
+                else{
+                    $('#status-0').prop("checked", false);
+                    $('#status-1').prop("checked", false);
+                }
+
+                $('#keterangan').val(data.R_diperiksa_Keterangan);
+            }
+            if(!$('#id-barang').val())
+                $('#search-result-hint').html("ID cannot be empty");
+            else
+                $.ajax({url: "middleware/find-supply.php?id_barang=" + $('#id-barang').val(), success: function(result){
+                    // console.log(result.Nama);
+                    if(result.length > 0){
+                        var json = JSON.parse(result);
+                        setUpForm(json);
+                        $('#search-result-hint').html("Result for ID = <b>" + $('#id-barang').val() + "</b>");
+                        $('#edit-button').removeAttr('disabled');
+                    }else{
+                        setUpForm({
+                            Nama: "",
+                            E_Jenis_ID: "",
+                            R_diperiksa_Hasil: "-1",
+                            Tanggal_Masuk: "",
+                            Status: "-1",
+                            R_diperiksa_Keterangan: ""
+                        });
+                        $('#search-result-hint').html("<i>No Result for ID = " + $('#id-barang').val() + "</i>");
+                        $('#edit-button').attr('disabled', 'disabled');
+                    }
+                }});
+        }
+
+        $(document).ready(function(){
+            if($('#id-barang').val())
+                formUpdate();
+        });
+
+        $('#search-id').click(function(){
+            formUpdate();
+        });
     </script>
     <script src="js/date.js"></script>
 </html>

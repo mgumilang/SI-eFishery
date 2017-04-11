@@ -1,6 +1,6 @@
 <?php
 
-	require_once('./DatabaseHelper.php');
+	require_once('DatabaseHelper.php');
 
 	class PengolahPegawai{
 
@@ -65,6 +65,6 @@
 	}
 
 	// test
-	PengolahPegawai::test();
+	// PengolahPegawai::test();
 
 ?>
