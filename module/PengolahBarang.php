@@ -26,6 +26,10 @@
 	    	return $this->dbhelper->DoQuery("UPDATE Barang SET Nama = '$nama', Status = '$status', Tanggal_Masuk = '$tanggal_masuk', E_Jenis_ID = '$jenis', R_diperiksa_Hasil = '$hasil', R_diperiksa_Keterangan = '$keterangan' WHERE ID = '$id';");
 	    }
 
+	    public function updateForQC($id, $idpegawai, $file, $hasil, $keterangan){
+	    	return $this->dbhelper->DoQuery("UPDATE Barang SET R_diperiksa_Data_QC = '$file', R_diperiksa_Keterangan = '$keterangan', E_Pegawai_ID = '$idpegawai', R_diperiksa_Hasil = '$hasil' WHERE ID = '$id';");
+	    }
+
 	    public function delete($id){
 
 	    }

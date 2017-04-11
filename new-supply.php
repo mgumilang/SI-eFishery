@@ -11,6 +11,8 @@
             body{
                 background-color: rgba(0, 0, 0, .03);
             }
+
+            /* Delete button on new supply card */
             .fa-trash{
                 float:right;
                 padding: 2px;
@@ -156,20 +158,26 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script type="text/javascript">
+
+        // override click back button
         $('#back-button').click(function(e){
             e.preventDefault();
             window.location.href = "index.php";
         });
 
+        // Before submit
         $('form').submit(function(e){
+            // get array of data
             var datatanggal = $('.input-tanggal');
             var datanama = $('.input-nama');
             var datajenis = $('.input-jenis');
 
+            // temporary string data
             var outtanggal = "";
             var outnama = "";
             var outjenis = "";
 
+            // serialized data with ',' separator
             var len = parseInt($('#jumlah').val());
             for(var i = 0; i < len; i++){
                 outtanggal += $(datatanggal[i]).val() + (i ==  (len - 1) ? "" : ",");
@@ -177,6 +185,7 @@
                 outjenis += $(datajenis[i]).val() + (i == (len - 1) ? "" : ",");
             }
 
+            // assign data to each input
             $('#alltanggal').val(outtanggal);
             $('#allnama').val(outnama);
             $('#alljenis').val(outjenis);
@@ -185,9 +194,12 @@
             console.log($('#allnama').val());
             console.log($('#alljenis').val());
 
+            // submit form
             return true;
         });
 
+        // Get Jenis barang record
+        // assigned to local js variable 'arr_jenis'
         <?php
             require('module/PengolahBarang.php');
 
@@ -205,6 +217,7 @@
             echo "var arr_jenis = " . json_encode($pb->allJenisBarang()) . ";";
         ?>
 
+        // return options HTML Tag of Jenis
         function getAllJenisOptionOnHTMLMode(){
             var res = "";
             arr_jenis.data.forEach(function(jenis){
@@ -214,6 +227,7 @@
             return res;
         }
 
+        // create new HTML input card tag for new supply
         var get_new_card = function(){
             return '\
             <div class="card">\
@@ -235,12 +249,13 @@
             </div>';
         }
 
-
+        // on [+] card button clicked
         $('#card_add').click(function(){
             $('#jumlah').val(parseInt($('#jumlah').val()) + 1);
             $(this).before(get_new_card());
         });
 
+        // on tipe supply, pengambilan, qc changed
         $('#tipe').change(function(){
             position = $(this).val();
             if(position == 'supply')
@@ -252,6 +267,7 @@
             
         });
 
+        // on card removed
         $(document).on('click', '.fa-trash', function(){ 
             $(this).parent().remove();
             $('#jumlah').val(parseInt($('#jumlah').val()) - 1);

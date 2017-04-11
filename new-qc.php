@@ -26,12 +26,12 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <form>
+                    <form action="middleware/new-qc.php" method="POST">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="tipe">Tipe:</label>
-                                    <select class="form-control" name="data-masukan" id="tipe">
+                                    <select class="form-control" name="datamasukan" id="tipe">
                                         <option value="supply">Supply</option>
                                         <option value="pengambilan">Pengambilan</option>
                                         <option value="qc" selected>QC</option>
@@ -40,8 +40,35 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="jumlah">Oleh:</label>
-                                    <input type="text" class="form-control" id="jumlah">
+                                    <label for="oleh">Oleh:</label>
+                                    <select class="form-control" name="idpegawai" id="oleh">
+
+                                    <?php
+                                        require('module/PengolahPegawai.php');
+
+                                        // Simple driver test
+                                        $dbHost = "localhost";
+                                        $dbName = "ef_manufacture";
+                                        $dbUser = "root";
+                                        $dbPass = "";
+
+                                        // create instance
+                                        $dbhelper = new DatabaseHelper($dbHost, $dbName, $dbUser, $dbPass);
+                                        $pp = new PengolahPegawai($dbhelper);
+
+
+                                        $res = $pp->all();
+
+                                        foreach ($res->data as $pegawai){
+                                            echo '<option value="' . $pegawai['ID'] . '">' . $pegawai['Nama'] . '</option>' . "\n";
+                                        }
+                                        
+                                        // dump result
+                                        
+                                        
+                                    ?>
+
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -101,18 +128,19 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>ID:</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="idbarang">
                                         </div>
                                         <div class="form-group">
                                             <label>Hasil:</label>
                                             <div>
-                                                <label class="radio-inline"><input type="radio" name="optradio">Lulus</label>
-                                                <label class="radio-inline"><input type="radio" name="optradio">Tidak Lulus</label>
+                                                <label class="radio-inline"><input type="radio" name="hasil" value="Lulus">Lulus</label>
+                                                <label class="radio-inline"><input type="radio" name="hasil" value="Tidak Lulus">Tidak Lulus</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>File:</label>
-                                            <input type="file" class="form-control">
+                                            <input type="file" class="form-control" id="file-input">
+                                            <input type="hidden" name="file" id="file" />
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +148,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="keterangan">Keterangan:</label>
-                                            <textarea class="form-control" rows="5" id="keterangan"></textarea>
+                                            <textarea class="form-control" rows="5" name="keterangan" id="keterangan"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -195,6 +223,33 @@
             else if(position == 'qc')
                 window.location.href = 'new-qc.php';
             
+        });
+
+        function send_file(file){
+            var data = new FormData();
+
+            data.append('file', file);
+
+            $.ajax({  
+                url: "middleware/image-uploader.php",
+                type: "POST",  
+                data: data,  
+                cache: false,
+                processData: false,  
+                contentType: false, 
+                context: this,
+                success: function (msg){
+                    var res = JSON.parse(msg);
+                    $('#file').val(res.data.link);
+                    console.log(res);
+                }
+            });
+        }
+
+        $("#file-input").change(function(){
+            if(this.files && this.files[0]){
+                send_file(this.files[0]);
+            }
         });
     </script>
     <script src="js/date.js"></script>
