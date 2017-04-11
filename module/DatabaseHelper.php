@@ -61,15 +61,18 @@
 
 			// If query succes return result
 			// ERROR: Gagal melakukan query pada databse
-			if($hasil == true){
+			if($hasil){
 
 				// init temporary variable
 				$arrResult = array();
 
-				// getting query result to 
-				// temporary reuslt variable
-				while($row = $hasil->fetch_assoc())
-					array_push($arrResult, $row);
+				if(isset($hasil->num_rows))
+					if($hasil->num_rows > 0)
+
+						// getting query result to 
+						// temporary reuslt variable
+						while($row = $hasil->fetch_assoc())
+							array_push($arrResult, $row);
 
 				// return result to caller
 			    return (object)array(
@@ -106,6 +109,6 @@
 	}
 
 	// test
-	DatabaseHelper::test();
+	// DatabaseHelper::test();
 
 ?>

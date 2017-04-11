@@ -6,9 +6,21 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/new-supply.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">
             body{
                 background-color: rgba(0, 0, 0, .03);
+            }
+            .fa-trash{
+                float:right;
+                padding: 2px;
+                border: solid 1px rgba(0, 0, 0, .1);
+                margin-top: -8px;
+                padding: 4px;
+                cursor: pointer;
+            }
+            .fa-trash:hover{
+                color: red;
             }
         </style>
     </head>
@@ -26,7 +38,6 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <form>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -41,7 +52,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="jumlah">Jumlah:</label>
-                                    <input type="text" class="form-control" id="jumlah">
+                                    <input type="text" class="form-control" id="jumlah" disabled="disabled" value="0">
                                 </div>
                             </div>
                         </div>
@@ -91,48 +102,20 @@
                                         margin-top: 80px;
                                     }
                                 </style>
-                                <div class="card">
-                                    <div class="form-group">
-                                        <label>ID:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Nama Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Jenis Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="form-group">
-                                        <label>ID:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Nama Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Jenis Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
                                 <div class="add card" id="card_add">
                                     <div class="plus">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label>ID:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
                                         <label>Nama Barang:</label>
                                         <input type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label>Jenis Barang:</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tanggal Masuk Barang:</label>
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
@@ -158,10 +141,14 @@
                                 <button class="btn btn-danger">Reset</button>
                             </div>
                             <div class="col-md-6 right">
-                                <button type="submit" class="btn btn-primary">Insert</button>
+                                <form action="middleware/new-supply.php" method="POST">
+                                    <input type="hidden" name="alltanggal" id="alltanggal" value="2017-04-11" />
+                                    <input type="hidden" name="allnama" id="allnama" value="aaa" />
+                                    <input type="hidden" name="alljenis" id="alljenis" value="1" />
+                                    <button type="submit" class="btn btn-primary" id="insert_now">Insert</button>
+                                </form>
                             </div>
-                        </div>
-                    </form>     
+                        </div>  
                 </div>
             </div>
         <!-- </div> -->
@@ -174,27 +161,83 @@
             window.location.href = "index.php";
         });
 
+        $('form').submit(function(e){
+            var datatanggal = $('.input-tanggal');
+            var datanama = $('.input-nama');
+            var datajenis = $('.input-jenis');
+
+            var outtanggal = "";
+            var outnama = "";
+            var outjenis = "";
+
+            var len = parseInt($('#jumlah').val());
+            for(var i = 0; i < len; i++){
+                outtanggal += $(datatanggal[i]).val() + (i ==  (len - 1) ? "" : ",");
+                outnama += $(datanama[i]).val() + (i == (len - 1) ? "" : ",");
+                outjenis += $(datajenis[i]).val() + (i == (len - 1) ? "" : ",");
+            }
+
+            $('#alltanggal').val(outtanggal);
+            $('#allnama').val(outnama);
+            $('#alljenis').val(outjenis);
+
+            console.log($('#alltanggal').val());
+            console.log($('#allnama').val());
+            console.log($('#alljenis').val());
+
+            return true;
+        });
+
+        <?php
+            require('module/PengolahBarang.php');
+
+            // Simple driver test
+            $dbHost = "localhost";
+            $dbName = "ef_manufacture";
+            $dbUser = "root";
+            $dbPass = "";
+
+            // create instance
+            $dbhelper = new DatabaseHelper($dbHost, $dbName, $dbUser, $dbPass);
+            $pb = new PengolahBarang($dbhelper);
+
+            // dump result
+            echo "var arr_jenis = " . json_encode($pb->allJenisBarang()) . ";";
+        ?>
+
+        function getAllJenisOptionOnHTMLMode(){
+            var res = "";
+            arr_jenis.data.forEach(function(jenis){
+                res += '<option value="' + jenis.ID + '">' + jenis.Nama + '</option>\n';
+            });
+            
+            return res;
+        }
+
         var get_new_card = function(){
             return '\
             <div class="card">\
-                <div class="form-group">\
-                    <label>ID:</label>\
-                    <input type="text" class="form-control">\
-                </div>\
+                <i class="fa fa-trash"></i>\
                 <div class="form-group">\
                     <label>Nama Barang:</label>\
-                    <input type="text" class="form-control">\
+                    <input type="text" class="form-control input-nama">\
                 </div>\
                 <div class="form-group">\
                     <label>Jenis Barang:</label>\
-                    <input type="text" class="form-control">\
+                    <select class="form-control input-jenis">'
+                    + getAllJenisOptionOnHTMLMode() +
+                    '</select>\
+                </div>\
+                <div class="form-group">\
+                    <label>Tanggal Masuk Barang:</label>\
+                    <input type="date" class="form-control input-tanggal">\
                 </div>\
             </div>';
         }
 
 
         $('#card_add').click(function(){
-            console.log(999);
+            $('#jumlah').val(parseInt($('#jumlah').val()) + 1);
             $(this).before(get_new_card());
         });
 
@@ -207,6 +250,11 @@
             else if(position == 'qc')
                 window.location.href = 'new-qc.php';
             
+        });
+
+        $(document).on('click', '.fa-trash', function(){ 
+            $(this).parent().remove();
+            $('#jumlah').val(parseInt($('#jumlah').val()) - 1);
         });
     </script>
     <script src="js/date.js"></script>
