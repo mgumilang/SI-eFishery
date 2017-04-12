@@ -87,11 +87,17 @@
                                             <?php
                                                 require('module/PengolahBarang.php');
 
-                                                // Simple driver test
-                                                $dbHost = "localhost";
-                                                $dbName = "ef_manufacture";
-                                                $dbUser = "root";
-                                                $dbPass = "";
+                                                require_once('dbconfig.php');
+                                                global $HOST;
+                                                global $NAME;
+                                                global $USER;
+                                                global $PASS;
+                                                
+                                                // Database credential
+                                                $dbHost = $HOST;
+                                                $dbName = $NAME;
+                                                $dbUser = $USER;
+                                                $dbPass = $PASS;
 
                                                 // create instance
                                                 $dbhelper = new DatabaseHelper($dbHost, $dbName, $dbUser, $dbPass);

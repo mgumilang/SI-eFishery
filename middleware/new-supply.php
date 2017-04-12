@@ -25,11 +25,17 @@
 		$datanama = explode(",", $_POST['allnama']);
 		$datajenis = explode(",", $_POST['alljenis']);
 
-		// Database Credential
-		$dbHost = "localhost";
-		$dbName = "ef_manufacture";
-		$dbUser = "root";
-		$dbPass = "";
+        require_once('../dbconfig.php');
+        global $HOST;
+        global $NAME;
+        global $USER;
+        global $PASS;
+        
+        // Database credential
+        $dbHost = $HOST;
+        $dbName = $NAME;
+        $dbUser = $USER;
+        $dbPass = $PASS;
 
 		// Database helper instance
 		$dbhelper = new DatabaseHelper($dbHost, $dbName, $dbUser, $dbPass);
