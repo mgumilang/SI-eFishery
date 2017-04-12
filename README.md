@@ -23,7 +23,7 @@ Salin seluruh isi repository ini ke direktori aktif lokal XAMPP, biasanya bernam
 2. Import dummy basis data pada direktori `dump_sql` ke basis data tersebut
 
 #### Step #2: Web App Database Configuration
-Ubah credential basis data pada berkas `dbconfig.php`
+Ubah credential basis data pada berkas `dbconfig.php` sesuai dengan pengaturan basis data lokal
 ```
 	$HOST = <alamat lokal, biasanya: localhost>;
 	$NAME = <nama basis data pada step #1>;
