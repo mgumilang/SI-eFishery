@@ -27,7 +27,8 @@
 	    }
 
 	    public function updateForQC($id, $idpegawai, $file, $hasil, $keterangan){
-	    	return $this->dbhelper->DoQuery("UPDATE Barang SET R_diperiksa_Data_QC = '$file', R_diperiksa_Keterangan = '$keterangan', E_Pegawai_ID = '$idpegawai', R_diperiksa_Hasil = '$hasil' WHERE ID = '$id';");
+	    	$datex = date('Y-m-d');
+	    	return $this->dbhelper->DoQuery("UPDATE Barang SET R_diperiksa_Data_QC = '$file', R_diperiksa_Keterangan = '$keterangan', E_Pegawai_ID = '$idpegawai', R_diperiksa_Hasil = '$hasil', R_diperiksa_Tanggal = '$datex', WHERE ID = '$id';");
 	    }
 
 	    public function delete($id){

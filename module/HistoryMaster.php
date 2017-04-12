@@ -1,6 +1,6 @@
 <?php
 
-	require_once('./DatabaseHelper.php');
+	require_once('DatabaseHelper.php');
 
 	class HistoryMaster{
 
@@ -16,7 +16,19 @@
 	    }
 
 	    public function some($offset){
+	    	$dataPengambilan = $this->dbhelper->DoQuery("SELECT Barang.Nama, Pengambilan.Tanggal, Pegawai.Nama AS PN, 'Pengambilan' AS Kode FROM Barang JOIN Pengambilan ON Barang.E_Pengambilan_ID = Pengambilan.ID JOIN Pegawai ON Pengambilan.E_Pegawai_ID = Pegawai.ID ORDER BY Pengambilan.Tanggal;");
 
+	    	$dataQC = $this->dbhelper->DoQuery("SELECT Barang.Nama, Barang.R_diperiksa_Tanggal AS Tanggal, Pegawai.Nama AS PN, 'QC' AS Kode FROM Barang JOIN Pegawai ON Barang.E_Pegawai_ID = Pegawai.ID ORDER BY Tanggal_Masuk;");
+
+	    	$out = array();
+
+	    	foreach ($dataPengambilan->data as $value)
+	    		array_push($out, $value);
+
+	    	foreach ($dataQC->data as $value)
+	    		array_push($out, $value);
+	    	
+	    	return $out;
 	    }
 
 		public static function test(){
@@ -32,11 +44,11 @@
 			$hm = new HistoryMaster($dbhelper);
 
 			// dump result
-			var_dump($hm->all());
+			echo json_encode($hm->some(2));
 		}
 	}
 
 	// test
-	HistoryMaster::test();
+	// HistoryMaster::test();
 
 ?>

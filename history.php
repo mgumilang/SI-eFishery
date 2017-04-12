@@ -1,3 +1,26 @@
+<?php 
+    
+    require_once('module/HistoryMaster.php');
+
+    require_once('dbconfig.php');
+    global $HOST;
+    global $NAME;
+    global $USER;
+    global $PASS;
+    
+    // Database credential
+    $dbHost = $HOST;
+    $dbName = $NAME;
+    $dbUser = $USER;
+    $dbPass = $PASS;
+
+    // create instance
+    $dbhelper = new DatabaseHelper($dbHost, $dbName, $dbUser, $dbPass);
+    $hm = new HistoryMaster($dbhelper);
+
+    $hasil = $hm->some(1);
+
+?>
 <DOCTYPE! html>
 <html>
     <header>
@@ -77,64 +100,26 @@
                                             <th>No</th>
                                             <th>Tanggal</th>
                                             <th>Kegiatan</th>
+                                            <th>Nama Barang</th>
                                             <th>Pegawai</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php
+                                        $i = 0;
+                                        foreach($hasil as $baris){
+                                            $i++;
+                                    ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>21 Maret 2017</td>
-                                            <td>Pengambilan</td>
-                                            <td>M. Gumilang</td>
+                                            <td><?php echo $i; ?></td>
+                                            <td><?php echo $baris['Tanggal']; ?></td>
+                                            <td><?php echo $baris['Kode']; ?></td>
+                                            <td><?php echo $baris['Nama']; ?></td>
+                                            <td><?php echo $baris['PN']; ?></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>21 Maret 2017</td>
-                                            <td>Pengambilan</td>
-                                            <td>Joshua Atmadja</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>21 Maret 2017</td>
-                                            <td>QC</td>
-                                            <td>M. Gumilang</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>21 Maret 2017</td>
-                                            <td>Pengambilan</td>
-                                            <td>M. Gumilang</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>21 Maret 2017</td>
-                                            <td>Pengambilan</td>
-                                            <td>Joshua Atmadja</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>21 Maret 2017</td>
-                                            <td>QC</td>
-                                            <td>M. Gumilang</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>21 Maret 2017</td>
-                                            <td>Pengambilan</td>
-                                            <td>M. Gumilang</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>21 Maret 2017</td>
-                                            <td>Pengambilan</td>
-                                            <td>Joshua Atmadja</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>21 Maret 2017</td>
-                                            <td>QC</td>
-                                            <td>M. Gumilang</td>
-                                        </tr>
+                                    <?php
+                                        }
+                                    ?>
                                     </tbody>
                                 </table>    
                             </div>
