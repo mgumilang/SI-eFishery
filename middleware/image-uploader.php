@@ -17,7 +17,7 @@
 		array(
 			"error" => false,
 			"data" => array(
-				"link" => "/public/" . $fname
+				"link" => "public/" . $fname
 			)
 		)
 	);

@@ -182,8 +182,8 @@
             </div>
         <!-- </div> -->
     </body>
-    <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $('#back-button').click(function(e){
             e.preventDefault();
@@ -222,7 +222,6 @@
                 window.location.href = 'new-pengambilan.php';
             else if(position == 'qc')
                 window.location.href = 'new-qc.php';
-            
         });
 
         function send_file(file){

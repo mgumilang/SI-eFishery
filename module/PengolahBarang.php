@@ -78,8 +78,48 @@
 	    	return $this->dbhelper->DoQuery("SELECT * FROM Barang;");
 	    }
 
+	    public function allQCWithParams($id, $hasil, $tanggal, $idpegawai){
+	    	$q = "SELECT 
+		    		Barang.R_diperiksa_Tanggal AS Tanggal_QC, 
+		    		Barang.ID AS ID_Barang, 
+		    		Barang.R_diperiksa_Hasil AS Hasil_QC, 
+		    		Pegawai.Nama AS Pemeriksa, 
+		    		Barang.R_diperiksa_Data_QC AS File_QC, 
+		    		Barang.R_diperiksa_Keterangan AS Keterangan 
+	    		  FROM Barang 
+	    		  JOIN Pegawai 
+	    		  ON Barang.E_Pegawai_ID = Pegawai.ID";
+
+	    	$params = "";
+	    	
+	    	if(strlen($id) > 0)
+	    		$params .= "Barang.ID = '$id'";
+	    	
+	    	if(strlen($hasil) > 0)
+	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Barang.R_diperiksa_Hasil = '$hasil'";
+	    	
+	    	if(strlen($tanggal) > 0)
+	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Barang.R_diperiksa_Tanggal = '$tanggal'";
+	    	
+	    	if(strlen($idpegawai) > 0)
+	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Barang.E_Pegawai_ID = '$idpegawai'";
+	    	
+			if(strlen($params) > 0)
+	    		return $this->dbhelper->DoQuery($q . " WHERE $params;");
+
+	    	return $this->dbhelper->DoQuery($q);
+	    }
+
 	    public function allPengambilanWithParams($id, $tanggal, $id_pegawai){
-	    	$q = "SELECT Pengambilan.Tanggal AS Tanggal_Pengambilan, Barang.ID AS ID_Barang, Pegawai.Nama as Nama_Pegawai FROM Barang JOIN Pengambilan ON Barang.E_Pengambilan_ID = Pengambilan.ID JOIN Pegawai ON Pengambilan.E_Pegawai_ID = Pegawai.ID";
+	    	$q = "SELECT 
+	    			Pengambilan.Tanggal AS Tanggal_Pengambilan, 
+	    			Barang.ID AS ID_Barang, 
+	    			Pegawai.Nama as Nama_Pegawai 
+	    		  FROM Barang 
+	    		  JOIN Pengambilan 
+	    		  ON Barang.E_Pengambilan_ID = Pengambilan.ID 
+	    		  JOIN Pegawai 
+	    		  ON Pengambilan.E_Pegawai_ID = Pegawai.ID;";
 
 	    	$params = "";
 	    	
