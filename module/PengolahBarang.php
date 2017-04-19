@@ -18,8 +18,9 @@
 	    // update 11 April 2017 -> parameter $status dihapus,
 	    // soalnya ketika insert status update pasti 0
 	    // public function insert($nama, $status, $tanggal_masuk, $jenis){
-	    public function insert($nama, $tanggal_masuk, $jenis){
-	    	$insert_status = $this->dbhelper->DoQuery("INSERT INTO Barang(Status, Nama, Tanggal_Masuk, E_Jenis_ID) VALUES ('0', '$nama', '$tanggal_masuk', '$jenis');");
+	    public function insert($id, $nama, $jenis){
+	    	$datex = date('Y-m-d');
+	    	$insert_status = $this->dbhelper->DoQuery("INSERT INTO Barang(ID, Status, Nama, Tanggal_Masuk, E_Jenis_ID) VALUES ('$id', 'Ada', '$nama', '$datex', '$jenis');");
 	    }
 
 	    public function update($id, $nama, $status, $tanggal_masuk, $jenis, $hasil, $keterangan){
@@ -28,7 +29,7 @@
 
 	    public function updateForQC($id, $idpegawai, $file, $hasil, $keterangan){
 	    	$datex = date('Y-m-d');
-	    	return $this->dbhelper->DoQuery("UPDATE Barang SET R_diperiksa_Data_QC = '$file', R_diperiksa_Keterangan = '$keterangan', E_Pegawai_ID = '$idpegawai', R_diperiksa_Hasil = '$hasil', R_diperiksa_Tanggal = '$datex', WHERE ID = '$id';");
+	    	return $this->dbhelper->DoQuery("UPDATE Barang SET R_diperiksa_Data_QC = '$file', R_diperiksa_Keterangan = '$keterangan', E_Pegawai_ID = '$idpegawai', R_diperiksa_Hasil = '$hasil', R_diperiksa_Tanggal = '$datex' WHERE ID = '$id';");
 	    }
 
 	    public function delete($id){
@@ -48,7 +49,7 @@
 
 	    	var_dump($queryCondition);
 
-	    	return $this->dbhelper->DoQuery("UPDATE Barang SET E_Pengambilan_ID = $IDPengambilan WHERE $queryCondition;");
+	    	return $this->dbhelper->DoQuery("UPDATE Barang SET E_Pengambilan_ID = $IDPengambilan, Status = 'Tidak Ada' WHERE $queryCondition;");
 	    }
 
 	    public function all(){

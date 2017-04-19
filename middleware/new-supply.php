@@ -7,12 +7,12 @@
 	// URL PARAM
 	// allnama 			-> Nama barang STRING (serialized STRING - separator ',')
 	// alljenis			-> Jenis barang STRING (serialized INT - separator ',')
-	// alltanggal		-> Tanggal barang di-supply STRING (serialized DATE - separator ',')
+	// allid			-> ID barang di-supply STRING (serialized INT - separator ',')
 
-	if(!isset($_POST['alltanggal']) || !isset($_POST['allnama']) || !isset($_POST['alljenis'])){
+	if(!isset($_POST['allid']) || !isset($_POST['allnama']) || !isset($_POST['alljenis'])){
 		echo $_POST['allnama'] . "<br/>";
 		echo $_POST['alljenis'] . "<br/>";
-		echo $_POST['alltanggal'] . "<br/>";
+		echo $_POST['allid'] . "<br/>";
 		echo "your input is wrong";
 		return;
 	}else{
@@ -21,7 +21,7 @@
 		require_once('../module/PengolahBarang.php');
 
 		// Exploding/ unserialized STRING to its type
-		$datatanggal = explode(",", $_POST['alltanggal']);
+		$dataid = explode(",", $_POST['allid']);
 		$datanama = explode(",", $_POST['allnama']);
 		$datajenis = explode(",", $_POST['alljenis']);
 
@@ -44,11 +44,11 @@
 		$pb = new PengolahBarang($dbhelper);
 
 		// Get size of data to be add
-		$len = sizeof($datatanggal);
+		$len = sizeof($dataid);
 
 		// Insert data
 		for($i = 0; $i < $len; $i++)
-			$pb->insert($datanama[$i], $datatanggal[$i], $datajenis[$i]);
+			$pb->insert($dataid[$i], $datanama[$i], $datajenis[$i]);
 
 		// redirect
 		echo "<script> window.location.href = '../new-supply.php'; </script>";

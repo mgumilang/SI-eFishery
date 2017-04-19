@@ -178,7 +178,7 @@
                         <div class="row main-button">
                             <div class="col-md-6 left">
                                 <button class="btn btn-default" id="back-button">Back</button>
-                                <button class="btn btn-danger">Reset</button>
+                                <button class="btn btn-danger" id="reset-button">Reset</button>
                             </div>
                             <div class="col-md-6 right">
                                 <button type="submit" class="btn btn-primary">Insert</button>
@@ -195,6 +195,11 @@
         $('#back-button').click(function(e){
             e.preventDefault();
             window.location.href = "index.php";
+        });
+
+        $('#reset-button').click(function(e){
+            e.preventDefault();
+            window.location.href = "new-qc.php";
         });
 
         var get_new_card = function(){

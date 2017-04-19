@@ -138,8 +138,8 @@
                                         <div class="form-group">
                                             <label>Status:</label>
                                             <div>
-                                                <label class="radio-inline"><input type="radio" id="status-0" value="0" name="status">Ada</label>
-                                                <label class="radio-inline"><input type="radio" id="status-1" value="1" name="status">Tidak Ada</label>
+                                                <label class="radio-inline"><input type="radio" id="status-0" value="Ada" name="status">Ada</label>
+                                                <label class="radio-inline"><input type="radio" id="status-1" value="Tidak Ada" name="status">Tidak Ada</label>
                                             </div>
                                         </div>
                                     </div>
@@ -180,7 +180,7 @@
                         <div class="row main-button">
                             <div class="col-md-6 left">
                                 <button class="btn btn-default" id="back-button">Back</button>
-                                <button class="btn btn-danger">Cancel</button>
+                                <button class="btn btn-danger" id="cancel-button">Cancel</button>
                             </div>
                             <div class="col-md-6 right">
                                 <button type="submit" class="btn btn-primary" id="edit-button" disabled>Edit</button>
@@ -197,6 +197,11 @@
         $('#back-button').click(function(e){
             e.preventDefault();
             window.location.href = "index.php";
+        })
+
+        $('#cancel-button').click(function(e){
+            e.preventDefault();
+            window.location.href = "edit.php";
         })
 
         var formUpdate = function(){
@@ -218,9 +223,9 @@
 
                 $('#tanggal-masuk-barang').val(data.Tanggal_Masuk);
 
-                if(data.Status == "0")
+                if(data.Status == "Ada")
                     $('#status-0').prop("checked", true);
-                else if(data.Status == "1")
+                else if(data.Status == "Tidak Ada")
                     $('#status-1').prop("checked", true);
                 else{
                     $('#status-0').prop("checked", false);

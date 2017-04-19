@@ -109,15 +109,15 @@
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </div>
                                     <div class="form-group">
+                                        <label>ID Barang:</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
                                         <label>Nama Barang:</label>
                                         <input type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label>Jenis Barang:</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tanggal Masuk Barang:</label>
                                         <input type="text" class="form-control">
                                     </div>
                                 </div>
@@ -140,11 +140,11 @@
                         <div class="row main-button">
                             <div class="col-md-6 left">
                                 <button class="btn btn-default" id="back-button">Back</button>
-                                <button class="btn btn-danger">Reset</button>
+                                <button class="btn btn-danger" id="reset-button">Reset</button>
                             </div>
                             <div class="col-md-6 right">
                                 <form action="middleware/new-supply.php" method="POST">
-                                    <input type="hidden" name="alltanggal" id="alltanggal" value="2017-04-11" />
+                                    <input type="hidden" name="allid" id="allid" value="1" />
                                     <input type="hidden" name="allnama" id="allnama" value="aaa" />
                                     <input type="hidden" name="alljenis" id="alljenis" value="1" />
                                     <button type="submit" class="btn btn-primary" id="insert_now">Insert</button>
@@ -155,42 +155,47 @@
             </div>
         <!-- </div> -->
     </body>
-    <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
-
+    
         // override click back button
         $('#back-button').click(function(e){
             e.preventDefault();
             window.location.href = "index.php";
         });
 
+        $('#reset-button').click(function(e){
+            e.preventDefault();
+            window.location.href = "new-supply.php";
+        });
+
         // Before submit
         $('form').submit(function(e){
             // get array of data
-            var datatanggal = $('.input-tanggal');
+            var dataid = $('.input-ID');
             var datanama = $('.input-nama');
             var datajenis = $('.input-jenis');
 
             // temporary string data
-            var outtanggal = "";
+            var outid = "";
             var outnama = "";
             var outjenis = "";
 
             // serialized data with ',' separator
             var len = parseInt($('#jumlah').val());
             for(var i = 0; i < len; i++){
-                outtanggal += $(datatanggal[i]).val() + (i ==  (len - 1) ? "" : ",");
+                outid += $(dataid[i]).val() + (i ==  (len - 1) ? "" : ",");
                 outnama += $(datanama[i]).val() + (i == (len - 1) ? "" : ",");
                 outjenis += $(datajenis[i]).val() + (i == (len - 1) ? "" : ",");
             }
 
             // assign data to each input
-            $('#alltanggal').val(outtanggal);
+            $('#allid').val(outid);
             $('#allnama').val(outnama);
             $('#alljenis').val(outjenis);
 
-            console.log($('#alltanggal').val());
+            console.log($('#allid').val());
             console.log($('#allnama').val());
             console.log($('#alljenis').val());
 
@@ -239,6 +244,10 @@
             <div class="card">\
                 <i class="fa fa-trash"></i>\
                 <div class="form-group">\
+                    <label>ID Barang:</label>\
+                    <input type="text" class="form-control input-ID">\
+                </div>\
+                <div class="form-group">\
                     <label>Nama Barang:</label>\
                     <input type="text" class="form-control input-nama">\
                 </div>\
@@ -247,10 +256,6 @@
                     <select class="form-control input-jenis">'
                     + getAllJenisOptionOnHTMLMode() +
                     '</select>\
-                </div>\
-                <div class="form-group">\
-                    <label>Tanggal Masuk Barang:</label>\
-                    <input type="date" class="form-control input-tanggal">\
                 </div>\
             </div>';
         }

@@ -177,7 +177,7 @@
                         <div class="row main-button">
                             <div class="col-md-6 left">
                                 <button class="btn btn-default" id="back-button">Back</button>
-                                <button class="btn btn-danger">Reset</button>
+                                <button class="btn btn-danger" id="reset-button">Reset</button>
                             </div>
                             <div class="col-md-6 right">
                                 <form action="middleware/new-pengambilan.php" method="POST">
@@ -197,6 +197,11 @@
         $('#back-button').click(function(e){
             e.preventDefault();
             window.location.href = "index.php";
+        });
+
+        $('#reset-button').click(function(e){
+            e.preventDefault();
+            window.location.href = "new-pengambilan.php";
         });
 
         $('form').submit(function(e){
