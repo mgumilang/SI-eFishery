@@ -104,8 +104,8 @@
                                     <label for="status">Status:</label>
                                     <select class="form-control" name="status" id="status">
                                         <option value=""></option>
-                                        <option value="Ada" <?php echo $_GET['status'] == '0' ? "selected" : "" ?>>Ada</option>
-                                        <option value="Tidak Ada" <?php echo $_GET['status'] == '1' ? "selected" : "" ?>>Tidak Ada</option>
+                                        <option value="Ada" <?php echo $_GET['status'] == 'Ada' ? "selected" : "" ?>>Ada</option>
+                                        <option value="Tidak Ada" <?php echo $_GET['status'] == 'Tidak Ada' ? "selected" : "" ?>>Tidak Ada</option>
                                     </select>
                                 </div>
                             </div>
@@ -126,6 +126,7 @@
                             <br/>
                         </div>
                     </form>
+                    <span class="jumlah-row"><?php echo "Jumlah row = " . sizeof($hasil->data)?></span>
                     <style type="text/css">
                         .main-data{
                             margin: 0px;
@@ -144,6 +145,9 @@
                         .komentar{
                             padding: 0;
                             margin: 0;
+                        }
+                        .jumlah-row{
+                            font-size: 20px;
                         }
                     </style>
                     <div class="row main-data">

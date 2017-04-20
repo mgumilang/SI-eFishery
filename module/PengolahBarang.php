@@ -65,10 +65,10 @@
 	    		$params .= "ID = '$id'";
 	    	
 	    	if(strlen($nama) > 0)
-	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Nama = '$nama'";
+	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Nama LIKE '$nama%'";
 	    	
 	    	if(strlen($tanggal) > 0)
-	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Tanggal_Masuk = '$tanggal'";
+	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Tanggal_Masuk LIKE '%$tanggal%'";
 	    	
 	    	if(strlen($status) > 0)
 	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Status = '$status'";
@@ -103,7 +103,7 @@
 	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Barang.R_diperiksa_Hasil = '$hasil'";
 	    	
 	    	if(strlen($tanggal) > 0)
-	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Barang.R_diperiksa_Tanggal = '$tanggal'";
+	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Barang.R_diperiksa_Tanggal LIKE '%$tanggal%'";
 	    	
 	    	if(strlen($idpegawai) > 0)
 	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Barang.E_Pegawai_ID = '$idpegawai'";

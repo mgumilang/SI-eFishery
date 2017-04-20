@@ -97,7 +97,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="tanggal">Tanggal:</label>
-                                    <input type="date" class="form-control" name="tanggal" id="tanggal" <?php echo $_GET['tanggal']; ?>>
+                                    <input type="date" class="form-control" name="tanggal" id="tanggal" value="<?php echo $_GET['tanggal'] ? $_GET['tanggal'] : ''; ?>">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -151,6 +151,7 @@
                             <br/>
                         </div>
                     </form>
+                    <span class="jumlah-row"><?php echo "Jumlah row = " . sizeof($hasil->data)?></span>
                     <style type="text/css">
                         .main-data{
                             margin: 0px;
@@ -169,6 +170,9 @@
                         .komentar{
                             padding: 0;
                             margin: 0;
+                        }
+                        .jumlah-row{
+                            font-size: 20px;
                         }
                     </style>
                     <div class="row main-data">
