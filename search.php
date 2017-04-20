@@ -104,8 +104,8 @@
                                     <label for="status">Status:</label>
                                     <select class="form-control" name="status" id="status">
                                         <option value=""></option>
-                                        <option value="0" <?php echo $_GET['status'] == '0' ? "selected" : "" ?>>Ada</option>
-                                        <option value="1" <?php echo $_GET['status'] == '1' ? "selected" : "" ?>>Tidak Ada</option>
+                                        <option value="Ada" <?php echo $_GET['status'] == '0' ? "selected" : "" ?>>Ada</option>
+                                        <option value="Tidak Ada" <?php echo $_GET['status'] == '1' ? "selected" : "" ?>>Tidak Ada</option>
                                     </select>
                                 </div>
                             </div>

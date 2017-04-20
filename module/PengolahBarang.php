@@ -19,6 +19,7 @@
 	    // soalnya ketika insert status update pasti 0
 	    // public function insert($nama, $status, $tanggal_masuk, $jenis){
 	    public function insert($id, $nama, $jenis){
+	    	date_default_timezone_set('Asia/Jakarta');
 	    	$datex = date('Y-m-d');
 	    	$insert_status = $this->dbhelper->DoQuery("INSERT INTO Barang(ID, Status, Nama, Tanggal_Masuk, E_Jenis_ID) VALUES ('$id', 'Ada', '$nama', '$datex', '$jenis');");
 	    }
@@ -28,6 +29,7 @@
 	    }
 
 	    public function updateForQC($id, $idpegawai, $file, $hasil, $keterangan){
+	    	date_default_timezone_set('Asia/Jakarta');
 	    	$datex = date('Y-m-d');
 	    	return $this->dbhelper->DoQuery("UPDATE Barang SET R_diperiksa_Data_QC = '$file', R_diperiksa_Keterangan = '$keterangan', E_Pegawai_ID = '$idpegawai', R_diperiksa_Hasil = '$hasil', R_diperiksa_Tanggal = '$datex' WHERE ID = '$id';");
 	    }

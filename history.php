@@ -1,6 +1,10 @@
 <?php 
     
     require_once('module/HistoryMaster.php');
+    if(!isset($_GET['datamasukan'])) $_GET['datamasukan'] = '';
+    if(!isset($_GET['nama'])) $_GET['nama'] = '';
+    if(!isset($_GET['tanggal'])) $_GET['tanggal'] = '';
+    if(!isset($_GET['idpegawai'])) $_GET['idpegawai'] = '';
 
     require_once('dbconfig.php');
     global $HOST;
@@ -18,7 +22,7 @@
     $dbhelper = new DatabaseHelper($dbHost, $dbName, $dbUser, $dbPass);
     $hm = new HistoryMaster($dbhelper);
 
-    $hasil = $hm->some(1);
+    $hasil = $hm->getWithParams($_GET['datamasukan'], $_GET['nama'], $_GET['tanggal'], $_GET['idpegawai']);
 
 ?>
 <DOCTYPE! html>
@@ -58,19 +62,84 @@
                                     cursor: pointer;
                                 }
                             </style>
-                            <div class="col-md-6">
-                                <div class="form-group search-barang">
-                                    <label for="id-barang">Search By:</label>
-                                    <div class='input-group'>
-                                        <input type="date" class="form-control" id="id-barang">
-                                        <span class="input-group-addon">
-                                            Find
-                                        </span>
+                            <form action="" method="GET">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group search-barang">
+                                            <label for="tipe">Search Data:</label>
+                                            <select class="form-control" name="datamasukan" id="tipe">
+                                                <option value="" <?php echo ($_GET['datamasukan'] == '') ? 'selected' : ''; ?>></option>
+                                                <option value="supply" <?php echo ($_GET['datamasukan'] == 'supply') ? 'selected' : ''; ?>>Supply</option>
+                                                <option value="pengambilan" <?php echo ($_GET['datamasukan'] == 'pengambilan') ? 'selected' : ''; ?>>Pengambilan</option>
+                                                <option value="qc" <?php echo ($_GET['datamasukan'] == 'qc') ? 'selected' : ''; ?>>QC</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="nama-barang">Nama:</label>
+                                            <input type="text" class="form-control" name="nama" id="nama-barang" value="<?php echo $_GET['nama'] ? $_GET['nama'] : ''; ?>">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                            </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="tanggal">Tanggal:</label>
+                                            <input type="date" class="form-control" name="tanggal" id="tanggal" value="<?php echo $_GET['tanggal'] ? $_GET['tanggal'] : ''; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="pemeriksa">Pegawai:</label>
+                                            <select class="form-control" name="idpegawai" id="pemeriksa">
+                                            <option value="" <?php echo ($_GET['idpegawai'] == '') ? 'selected' : ''; ?>></option>
+                                            <?php
+                                                require('module/PengolahPegawai.php');
+
+
+                                                require_once('dbconfig.php');
+                                                global $HOST;
+                                                global $NAME;
+                                                global $USER;
+                                                global $PASS;
+                                                
+                                                // Database credential
+                                                $dbHost = $HOST;
+                                                $dbName = $NAME;
+                                                $dbUser = $USER;
+                                                $dbPass = $PASS;
+
+                                                // create instance
+                                                $dbhelper = new DatabaseHelper($dbHost, $dbName, $dbUser, $dbPass);
+                                                $pp = new PengolahPegawai($dbhelper);
+
+
+                                                $res = $pp->all();
+
+                                                foreach ($res->data as $pegawai){
+                                                    echo '<option value="' . $pegawai['ID'] . '" ' . (($_GET['idpegawai'] == $pegawai['ID']) ? 'selected' : '') . '>' . $pegawai['Nama'] . '</option>' . "\n";
+                                                }
+                                                
+                                                // dump result
+                                                
+                                                
+                                            ?>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="submit" class="btn btn-primary" value="Search" />
+                                    </div>
+
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </div>
+                            </form>
                         </div>
                         <style type="text/css">
                             .main-data{
