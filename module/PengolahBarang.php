@@ -131,7 +131,7 @@
 	    		$params .= "Barang.ID = '$id'";
 	    	
 	    	if(strlen($tanggal) > 0)
-	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Pengambilan.Tanggal = '$tanggal'";
+	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Pengambilan.Tanggal LIKE '%$tanggal%'";
 	    	
 	    	if(strlen($id_pegawai) > 0)
 	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Pengambilan.E_Pegawai_ID = '$id_pegawai'";

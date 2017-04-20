@@ -144,6 +144,7 @@
                             <br/>
                         </div>
                     </form>
+                    <span class="jumlah-row"><?php echo "Jumlah row = " . sizeof($hasil->data)?></span>
                     <style type="text/css">
                         .main-data{
                             margin: 0px;
@@ -162,6 +163,9 @@
                         .komentar{
                             padding: 0;
                             margin: 0;
+                        }
+                        .jumlah-row{
+                            font-size: 20px;
                         }
                     </style>
                     <div class="row main-data">
