@@ -141,6 +141,7 @@
                                 </div>
                             </form>
                         </div>
+                        <span class="jumlah-row"><?php echo "Jumlah row = " . sizeof($hasil)?></span>
                         <style type="text/css">
                             .main-data{
                                 margin: 0px;
@@ -159,6 +160,9 @@
                             .komentar{
                                 padding: 0;
                                 margin: 0;
+                            }
+                            .jumlah-row{
+                                font-size: 20px;
                             }
                         </style>
                         <div class="row main-data">
@@ -228,8 +232,8 @@
             </div>
         </div>
     </body>
-    <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $('#back-button').click(function(e){
             e.preventDefault();
