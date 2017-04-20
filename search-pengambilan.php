@@ -96,6 +96,7 @@
                                 <div class="form-group">
                                     <label for="pegawai">Pegawai:</label>
                                     <select class="form-control" name="idpegawai" id="idpegawai">
+                                        <option value=""></option>
 
                                     <?php
                                         require('module/PengolahPegawai.php');

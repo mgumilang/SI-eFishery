@@ -123,7 +123,7 @@
 	    		  JOIN Pengambilan 
 	    		  ON Barang.E_Pengambilan_ID = Pengambilan.ID 
 	    		  JOIN Pegawai 
-	    		  ON Pengambilan.E_Pegawai_ID = Pegawai.ID;";
+	    		  ON Pengambilan.E_Pegawai_ID = Pegawai.ID";
 
 	    	$params = "";
 	    	
@@ -136,6 +136,8 @@
 	    	if(strlen($id_pegawai) > 0)
 	    		$params .= (strlen($params) > 0 ? " AND " : "") . "Pengambilan.E_Pegawai_ID = '$id_pegawai'";
 	    	
+	    	// echo $q . " WHERE $params;";
+
 			if(strlen($params) > 0)
 	    		return $this->dbhelper->DoQuery($q . " WHERE $params;");
 
@@ -154,6 +156,14 @@
 
 	    }
 
+	    public static function getPath(){
+			$myfile = fopen("PATH.ME", "r") or die("Unable to open file!");
+			$path = fgets($myfile);
+			fclose($myfile);
+
+			return $path;
+	    }
+
 		public static function test(){
 
 			// Simple driver test
@@ -166,8 +176,11 @@
 			$dbhelper = new DatabaseHelper($dbHost, $dbName, $dbUser, $dbPass);
 			$pb = new PengolahBarang($dbhelper);
 
-			// dump result
-			var_dump($pb->all());
+			// // dump result
+			// var_dump($pb->all());
+
+			$pb->changeQCPath("notpublic");
+			echo PengolahBarang::getPath();
 		}
 	}
 

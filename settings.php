@@ -88,12 +88,16 @@
                         <span class="close">Close &times;</span>
                         <div class="row">
                             <div class="col-md-12 folder-form">
-                                <form action="" method="GET">
+                                <form action="middleware/change-path.php" method="POST">
                                     <div class="form-group">
                                         <label>Path Folder:</label>
-                                        <input type="text" class="form-control" name="pathfolder">
+                                        <input type="text" class="form-control" name="path" value="<?php
+
+                                        require('module/PengolahBarang.php');
+
+                                        echo PengolahBarang::getPath();
+                                    ?>">
                                     </div>
-                                    <input type="hidden" name="type" value="folder">
                                     <br>
                                     <input type="submit" class="btn btn-primary" value="Edit">
                                 </form>
