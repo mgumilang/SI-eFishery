@@ -1,3 +1,31 @@
+<?php 
+    
+    require_once('module/HistoryMaster.php');
+    if(!isset($_GET['datamasukan'])) $_GET['datamasukan'] = '';
+    if(!isset($_GET['nama'])) $_GET['nama'] = '';
+    if(!isset($_GET['tanggal'])) $_GET['tanggal'] = '';
+    if(!isset($_GET['idpegawai'])) $_GET['idpegawai'] = '';
+
+    require_once('dbconfig.php');
+    global $HOST;
+    global $NAME;
+    global $USER;
+    global $PASS;
+    
+    // Database credential
+    $dbHost = $HOST;
+    $dbName = $NAME;
+    $dbUser = $USER;
+    $dbPass = $PASS;
+
+    // create instance
+    $dbhelper = new DatabaseHelper($dbHost, $dbName, $dbUser, $dbPass);
+    $hm = new HistoryMaster($dbhelper);
+
+    $hasil = $hm->getWithParams($_GET['datamasukan'], $_GET['nama'], $_GET['tanggal'], $_GET['idpegawai']);
+
+?>
+
 <DOCTYPE! html>
 <html>
     <header>
@@ -51,61 +79,21 @@
                             Last Updates: 
                         </div>
                         <table>
-                            <tr>
-                                <td>
-                                    21 Maret 2017
-                                </td>
-                                <td>
-                                    Pengambilan
-                                </td>
-                                <td>
-                                    M. Gumilang
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    21 Maret 2017
-                                </td>
-                                <td>
-                                    Pengambilan
-                                </td>
-                                <td>
-                                    Joshua Atmadja
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    21 Maret 2017
-                                </td>
-                                <td>
-                                    QC
-                                </td>
-                                <td>
-                                    M. Gumilang
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    21 Maret 2017
-                                </td>
-                                <td>
-                                    Supply
-                                </td>
-                                <td>
-                                    -
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    20 Maret 2017
-                                </td>
-                                <td>
-                                    QC
-                                </td>
-                                <td>
-                                    Rio Chandra R.
-                                </td>
-                            </tr>
+                            <?php
+                                $i = 0;
+                                while($i <= 9){
+                                    $i++;
+                            ?>
+                                <tr>
+                                    <td><?php echo $i; ?></td>
+                                    <td><?php echo $hasil[$i-1]['Tanggal']; ?></td>
+                                    <td><?php echo $hasil[$i-1]['Kode']; ?></td>
+                                    <td><?php echo $hasil[$i-1]['Nama']; ?></td>
+                                    <td><?php echo $hasil[$i-1]['PN']; ?></td>
+                                </tr>
+                            <?php
+                                }
+                            ?>
                         </table>
                     </div>
                 </div>

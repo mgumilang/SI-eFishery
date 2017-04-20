@@ -12,7 +12,7 @@
 	    }
 
 	    public function insert($nama){
-
+	    	$insert_status = $this->dbhelper->DoQuery("INSERT INTO Pegawai(Nama) VALUES ('$nama');");
 	    }
 
 	    public function update($id, $nama){
@@ -20,7 +20,7 @@
 	    }
 
 	    public function delete($id){
-
+	    	$delete_status = $this->dbhelper->DoQuery("DELETE FROM Pegawai WHERE ID=$id;");
 	    }
 
 	    public function all(){
