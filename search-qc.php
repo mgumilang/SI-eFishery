@@ -97,7 +97,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="tanggal">Tanggal:</label>
-                                    <input type="date" class="form-control" name="tanggal" id="tanggal" <?php echo $_GET['tanggal']; ?>>
+                                    <input type="date" class="form-control" name="tanggal" id="tanggal" value="<?php echo $_GET['tanggal'] ? $_GET['tanggal'] : ''; ?>">
                                 </div>
                             </div>
                             <div class="col-md-6">
